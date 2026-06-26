@@ -25,6 +25,9 @@
   --surf:  #0C1220;
   --card:  #0F1929;
   --bord:  #182236;
+  --bronze:#C68B3A;
+  --bronze-bg:rgba(198,139,58,.10);
+  --bronze-st:rgba(198,139,58,.60);
   --text:  #D4DFF0;
   --dim:   #3A4A5C;
   --muted: #62748A;
@@ -108,6 +111,11 @@ html{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 .tr.win-am::before{background:var(--am)}
 .tr.win-cy{background:var(--cy-bg)}
 .tr.win-cy::before{background:var(--cy)}
+.tr.win-bronze{background:var(--bronze-bg)}
+.tr.win-bronze::before{background:var(--bronze)}
+.win-bronze .tr-dot{background:var(--bronze)}
+.pb-bronze{background:var(--bronze-st)}
+.cnote.bronze-note-chip{color:var(--bronze);background:rgba(198,139,58,.08);border-color:rgba(198,139,58,.25)}
 .tr.lose::before{background:transparent}
 .tr-flag{font-size:13px;line-height:1;flex-shrink:0}
 .tr.lose .tr-flag{filter:grayscale(55%) opacity(55%)}
@@ -213,44 +221,6 @@ html{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 .story.teal{border-color:rgba(0,194,178,.18);background:rgba(0,194,178,.03)}
 .story.teal .story-title{color:var(--cy)}
 
-/* ── BRONZE FINAL ───────────────────────────────────────────── */
-.bronze-wrap{
-  padding:0 32px 32px;
-}
-.bronze-hdr-row{
-  display:flex;align-items:center;gap:12px;margin-bottom:12px;
-}
-.bronze-label{
-  font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
-  color:var(--muted);
-}
-.bronze-date-chip{
-  font-size:9px;letter-spacing:.06em;color:var(--dim);
-  border:1px solid var(--bord);border-radius:2px;padding:2px 8px;
-}
-.bronze-card{
-  display:inline-flex;align-items:stretch;
-  background:var(--card);border:1px solid var(--bord);border-radius:4px;
-  overflow:hidden;min-width:320px;max-width:440px;
-}
-.bronze-team{
-  flex:1;display:flex;align-items:center;gap:7px;
-  padding:11px 14px;font-size:12px;font-weight:600;
-}
-.bronze-team.winner{
-  background:rgba(0,194,178,.06);border-left:3px solid var(--cy);
-  color:var(--text);
-}
-.bronze-team.loser{color:var(--muted)}
-.bronze-pct{font-size:10px;font-weight:700;margin-left:auto;padding-left:8px}
-.bronze-team.winner .bronze-pct{color:var(--cy)}
-.bronze-divider{
-  width:1px;background:var(--bord);align-self:stretch;flex-shrink:0;
-}
-.bronze-note{
-  font-size:9.5px;color:var(--dim);margin-top:8px;letter-spacing:.03em;
-}
-
 /* ── FOOTER ──────────────────────────────────────────────────── */
 .footer{
   padding:22px 32px;border-top:1px solid var(--bord);
@@ -308,28 +278,6 @@ html{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 <!-- BRACKET -->
 <div class="bscroll">
   <div class="binner" id="bracket"></div>
-</div>
-
-<!-- BRONZE FINAL -->
-<div class="bronze-wrap">
-  <div class="bronze-hdr-row">
-    <span class="bronze-label">3rd Place Match</span>
-    <span class="bronze-date-chip">Jul 18 · Hard Rock Stadium · Miami</span>
-  </div>
-  <div class="bronze-card">
-    <div class="bronze-team winner">
-      <span>🇫🇷</span>
-      <span>France</span>
-      <span class="bronze-pct">66.5%</span>
-    </div>
-    <div class="bronze-divider"></div>
-    <div class="bronze-team loser">
-      <span>🏴󠁧󠁢󠁥󠁮󠁧󠁿</span>
-      <span>England</span>
-      <span class="bronze-pct">33.5%</span>
-    </div>
-  </div>
-  <div class="bronze-note">SF losers · France predicted to win 3rd place</div>
 </div>
 
 <!-- STORYLINES -->
@@ -396,10 +344,10 @@ const CONN_W  = 44;
 const CHAMPION = "Spain";
 
 function slotH(ri)  { return SLOT * Math.pow(2, ri); }
-function cardTop(ri, mi, isFinal) {
+function cardTop(ri, mi, isFinal, isBronzeMatch) {
+  if (isFinal || isBronzeMatch) return (TOTAL_H - (isFinal ? FINAL_H : CARD_H)) / 2;
   const sh = slotH(ri);
-  const h  = isFinal ? FINAL_H : CARD_H;
-  return mi * sh + (sh - h) / 2;
+  return mi * sh + (sh - CARD_H) / 2;
 }
 
 // ── Data ─────────────────────────────────────────────────────
@@ -457,6 +405,9 @@ const ROUNDS = [
     {h:"France",      hf:"🇫🇷",a:"Spain",         af:"🇪🇸",ha:46.9,aa:53.1,w:"Spain",        close:true,  dt:"Jul 14",venue:"MetLife Stadium · New York",     note:"Spain through 53.1%"},
     {h:"England",     hf:"🏴󠁧󠁢󠁥󠁮󠁧󠁿",a:"Argentina",    af:"🇦🇷",ha:39.0,aa:61.0,w:"Argentina",               dt:"Jul 15",venue:"Rose Bowl · Los Angeles"},
   ]},
+  { name:"3rd Place", date:"Jul 18", isBronze:true, matches:[
+    {h:"France",      hf:"🇫🇷",a:"England",       af:"🏴󠁧󠁢󠁥󠁮󠁧󠁿",ha:66.5,aa:33.5,w:"France",isBronze:true,   dt:"Jul 18",venue:"Hard Rock Stadium · Miami",     note:"SF losers"},
+  ]},
   { name:"Final", date:"Jul 19", matches:[
     {h:"Spain",       hf:"🇪🇸",a:"Argentina",     af:"🇦🇷",ha:79.2,aa:20.8,w:"Spain",isFinal:true,        dt:"Jul 19",venue:"MetLife Stadium · East Rutherford, NJ"},
   ]},
@@ -493,29 +444,34 @@ function line(x1,y1,x2,y2,color,delay){
 ROUNDS.forEach((round, ri) => {
   const colLeft = ri * (COL_W + CONN_W);
 
-  // Round column div
   const col = document.createElement("div");
   col.style.cssText = `position:absolute;left:${colLeft}px;top:0;width:${COL_W}px`;
 
   const hdr = document.createElement("div");
   hdr.className = "rnd-hdr";
-  hdr.innerHTML = `<span class="rnd-name">${round.name}</span><span class="rnd-date">${round.date}</span>`;
+  if (round.isBronze) {
+    hdr.innerHTML = `<span class="rnd-name" style="color:var(--bronze)">${round.name}</span><span class="rnd-date">${round.date}</span>`;
+  } else {
+    hdr.innerHTML = `<span class="rnd-name">${round.name}</span><span class="rnd-date">${round.date}</span>`;
+  }
   col.appendChild(hdr);
   root.appendChild(col);
 
   round.matches.forEach((m, mi) => {
-    const isFinal = !!m.isFinal;
+    const isFinal    = !!m.isFinal;
+    const isBronzeM  = !!m.isBronze;
     const fh  = isFinal ? FINAL_H : CARD_H;
-    const top = cardTop(ri, mi, isFinal) + HDR_H;
+    const top = cardTop(ri, mi, isFinal, isBronzeM) + HDR_H;
     const homeWon = m.w === m.h;
     const awayWon = m.w === m.a;
     const isC = m.w === CHAMPION;
-    const cc  = isC ? "am" : "cy";
+    const cc  = isBronzeM ? "bronze" : (isC ? "am" : "cy");
     const rowH = isFinal ? Math.floor((fh - BAR_H) / 2) : ROW_H;
 
     const card = document.createElement("div");
     card.className = "card";
-    card.style.cssText = `position:absolute;left:0;top:${top}px;width:${COL_W}px;height:${fh}px`;
+    const bronzeBorder = isBronzeM ? "border-color:rgba(198,139,58,.35);" : "";
+    card.style.cssText = `position:absolute;left:0;top:${top}px;width:${COL_W}px;height:${fh}px;${bronzeBorder}`;
 
     const hBarCls = homeWon ? `pb-${cc}` : "pb-dim";
     const aBarCls = awayWon ? `pb-${cc}` : "pb-dim";
@@ -537,28 +493,35 @@ ROUNDS.forEach((round, ri) => {
         <span class="tr-pct">${m.aa.toFixed(1)}%</span>
         ${awayWon?`<span class="tr-dot"></span>`:''}
       </div>
-      ${m.note?`<div class="cnote${m.upset?' upset':m.close?' close':isC?' champ':''}">${m.note}</div>`:''}
+      ${m.note?`<div class="cnote${m.upset?' upset':m.close?' close':isBronzeM?' bronze-note-chip':isC?' champ':''}">${m.note}</div>`:''}
       ${m.dt?`<div class="card-venue">${m.dt} · ${m.venue}</div>`:''}
     `;
     col.appendChild(card);
 
-    // Connector to next round
-    if (ri < ROUNDS.length - 1) {
-      const nmi  = Math.floor(mi / 2);
-      const nTop = cardTop(ri+1, nmi, ri+1===ROUNDS.length-1&&ROUNDS[ri+1].matches[0].isFinal) + HDR_H;
-      const nFh  = (ri+1===ROUNDS.length-1&&ROUNDS[ri+1].matches[0].isFinal) ? FINAL_H : CARD_H;
-      const x1   = colLeft + COL_W;
-      const x2   = colLeft + COL_W + CONN_W;
-      const srcY = homeWon ? top + fh/4 : top + fh*3/4;
-      const dstY = nTop + nFh/2;
-      const clr  = isC ? "rgba(245,163,0,.75)" : "rgba(0,194,178,.55)";
-      line(x1, srcY, x2, dstY, clr, ri*.1 + mi*.03);
+    // Connectors: skip to/from bronze rounds
+    if (!round.isBronze) {
+      let nextRi = ri + 1;
+      while (nextRi < ROUNDS.length && ROUNDS[nextRi].isBronze) nextRi++;
+
+      if (nextRi < ROUNDS.length) {
+        const nextRound = ROUNDS[nextRi];
+        const nmi      = Math.floor(mi / 2);
+        const nIsFinal = !!nextRound.matches[0].isFinal;
+        const nTop     = cardTop(nextRi, nmi, nIsFinal, false) + HDR_H;
+        const nFh      = nIsFinal ? FINAL_H : CARD_H;
+        const x1       = colLeft + COL_W;
+        const x2       = nextRi * (COL_W + CONN_W);
+        const srcY     = homeWon ? top + fh/4 : top + fh*3/4;
+        const dstY     = nTop + nFh/2;
+        const clr      = isC ? "rgba(245,163,0,.75)" : "rgba(0,194,178,.55)";
+        line(x1, srcY, x2, dstY, clr, ri*.1 + mi*.03);
+      }
     }
 
     // Connector from Final to champion card
     if (isFinal) {
-      const cx = colLeft + COL_W + CONN_W;
-      const cy = top + fh/2;
+      const cx   = colLeft + COL_W + CONN_W;
+      const cy   = top + fh/2;
       const srcY = awayWon ? top + fh*3/4 : top + fh/4;
       line(colLeft + COL_W, srcY, cx + 28, cy, "rgba(245,163,0,.8)", .72);
     }
