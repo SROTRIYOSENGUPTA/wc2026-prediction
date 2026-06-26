@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Srotriyo Sengupta's WC 2026 Bracket Prediction</title>
+<meta name="description" content="Game-by-game machine learning prediction for FIFA World Cup 2026 by Srotriyo Sengupta. XGBoost pipeline using ELO ratings, expected goals, squad chemistry, and Ballon d'Or 2025 rankings. Predicted champion: Spain.">
+<meta name="author" content="Srotriyo Sengupta">
+
+<!-- Open Graph -->
+<meta property="og:type"        content="article">
+<meta property="og:title"       content="Srotriyo Sengupta's WC 2026 Bracket Prediction — Spain are Champions">
+<meta property="og:description" content="XGBoost + 15 features + Ballon d'Or 2025. Spain edges France 53.1% in the Final. Full bracket by Srotriyo Sengupta.">
+<meta property="og:site_name"   content="Srotriyo Sengupta · Data Analysis">
+
+<!-- Twitter Card -->
+<meta name="twitter:card"        content="summary_large_image">
+<meta name="twitter:title"       content="Srotriyo Sengupta's WC 2026 Bracket Prediction — Spain are Champions">
+<meta name="twitter:description" content="XGBoost ML pipeline with Ballon d'Or 2025 feature engineering. Full bracket from Round of 32 to Final by Srotriyo Sengupta.">
+
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:    #07090F;
+  --surf:  #0C1220;
+  --card:  #0F1929;
+  --bord:  #182236;
+  --text:  #D4DFF0;
+  --dim:   #3A4A5C;
+  --muted: #62748A;
+  --cy:    #00C2B2;
+  --cy-bg: rgba(0,194,178,.07);
+  --cy-st: rgba(0,194,178,.65);
+  --am:    #F5A300;
+  --am-bg: rgba(245,163,0,.08);
+  --am-st: rgba(245,163,0,.70);
+  --red:   #FF5F5F;
+  --cl:    #8B8AFF;
+}
+html{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",Roboto,sans-serif;-webkit-font-smoothing:antialiased}
+
+/* ── SITE HEADER ─────────────────────────────────────────────── */
+.site-hdr{
+  background:var(--surf);border-bottom:1px solid var(--bord);
+  padding:18px 32px 14px;
+}
+.site-eyebrow{
+  font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:6px
+}
+.site-eyebrow span{color:var(--am);margin-right:8px}
+.site-title{
+  font-family:Impact,"Arial Narrow",Haettenschweiler,sans-serif;
+  font-size:clamp(22px,4vw,38px);letter-spacing:.04em;text-transform:uppercase;
+  color:var(--text);line-height:1.1;margin-bottom:8px
+}
+.site-title em{color:var(--am);font-style:normal}
+.site-deck{
+  font-size:13px;color:var(--muted);line-height:1.55;max-width:680px;margin-bottom:14px
+}
+.site-meta{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.site-byline{font-size:11px;color:var(--dim)}
+.site-byline strong{color:var(--text)}
+.site-chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{
+  font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  padding:3px 9px;border-radius:2px;border:1px solid var(--bord);color:var(--muted)
+}
+.chip-champ{background:var(--am-bg);border-color:rgba(245,163,0,.3);color:var(--am)}
+.chip-runner{background:var(--cy-bg);border-color:rgba(0,194,178,.25);color:var(--cy)}
+
+/* ── BRACKET TOOLBAR ─────────────────────────────────────────── */
+.toolbar{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:10px 32px;background:var(--bg);border-bottom:1px solid var(--bord);
+  gap:12px;flex-wrap:wrap;
+  position:sticky;top:0;z-index:100;
+}
+.tb-rounds{display:flex;align-items:center;gap:6px}
+.tb-rnd{
+  font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--dim);padding:3px 8px;border:1px solid var(--bord);border-radius:2px;
+  white-space:nowrap
+}
+.tb-rnd.active{color:var(--text);border-color:rgba(255,255,255,.15)}
+.tb-model{
+  font-size:9px;color:var(--dim);letter-spacing:.06em;white-space:nowrap
+}
+
+/* ── BRACKET SCROLL ──────────────────────────────────────────── */
+.bscroll{overflow-x:auto;overflow-y:hidden;padding:28px 32px 36px;-webkit-overflow-scrolling:touch}
+.binner{position:relative;display:flex;align-items:flex-start;width:max-content}
+
+/* ── MATCH CARDS ─────────────────────────────────────────────── */
+.card{
+  position:absolute;
+  background:var(--card);border:1px solid var(--bord);border-radius:3px;
+  overflow:visible;transition:border-color .18s,box-shadow .18s;
+}
+.card:hover{border-color:#253246;box-shadow:0 4px 24px rgba(0,0,0,.5)}
+.tr{
+  display:flex;align-items:center;gap:7px;padding:0 10px 0 12px;position:relative;
+}
+.tr::before{
+  content:'';position:absolute;left:0;top:0;bottom:0;width:3px;border-radius:1px 0 0 1px;
+}
+.tr.win-am{background:var(--am-bg)}
+.tr.win-am::before{background:var(--am)}
+.tr.win-cy{background:var(--cy-bg)}
+.tr.win-cy::before{background:var(--cy)}
+.tr.lose::before{background:transparent}
+.tr-flag{font-size:13px;line-height:1;flex-shrink:0}
+.tr.lose .tr-flag{filter:grayscale(55%) opacity(55%)}
+.tr-name{flex:1;font-size:11px;font-weight:600;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tr.lose .tr-name{font-weight:400;color:var(--dim)}
+.tr-pct{font-family:"SF Mono",Cascadia,Consolas,monospace;font-size:10px;flex-shrink:0}
+.tr.win-am .tr-pct{color:var(--am)}
+.tr.win-cy .tr-pct{color:var(--cy)}
+.tr.lose .tr-pct{color:var(--dim)}
+.tr-dot{width:5px;height:5px;border-radius:50%;flex-shrink:0}
+.win-am .tr-dot{background:var(--am)}
+.win-cy .tr-dot{background:var(--cy)}
+.pbar{height:3px;display:flex;width:100%}
+.pb-am{background:var(--am-st)}
+.pb-cy{background:var(--cy-st)}
+.pb-dim{background:rgba(255,255,255,.05)}
+.card-venue{
+  height:16px;display:flex;align-items:center;justify-content:center;
+  border-top:1px solid var(--bord);
+  font-size:8.5px;color:var(--dim);letter-spacing:.04em;
+  padding:0 8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.cnote{
+  position:absolute;bottom:-18px;left:0;right:0;
+  text-align:center;font-size:9px;color:var(--muted);
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;letter-spacing:.04em
+}
+.cnote.upset{color:var(--red)}
+.cnote.close{color:var(--cl)}
+.cnote.champ{color:var(--am)}
+
+/* Round column header */
+.rnd-hdr{
+  height:44px;display:flex;flex-direction:column;align-items:center;
+  justify-content:center;padding:0 8px
+}
+.rnd-name{font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+.rnd-date{font-size:9px;color:var(--dim);margin-top:3px;letter-spacing:.04em}
+
+/* ── CHAMPION CARD ───────────────────────────────────────────── */
+.champ-wrap{
+  position:absolute;display:flex;align-items:center;
+}
+.champ-card{
+  background:linear-gradient(135deg,rgba(245,163,0,.12),rgba(245,163,0,.04));
+  border:1px solid rgba(245,163,0,.40);border-radius:5px;
+  padding:28px 32px;text-align:center;
+  box-shadow:0 0 50px rgba(245,163,0,.10),0 2px 20px rgba(0,0,0,.5);
+  min-width:164px
+}
+.champ-trophy{font-size:38px;display:block;margin-bottom:10px}
+.champ-label{
+  font-size:9px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--am);opacity:.75;display:block;margin-bottom:8px
+}
+.champ-flag{font-size:32px;display:block;margin-bottom:6px}
+.champ-name{
+  font-family:Impact,"Arial Narrow",sans-serif;
+  font-size:24px;letter-spacing:.06em;text-transform:uppercase;color:var(--am);line-height:1
+}
+.champ-prob{
+  font-family:"SF Mono",Cascadia,Consolas,monospace;
+  font-size:11px;color:var(--am);opacity:.7;margin-top:8px;display:block
+}
+.champ-runner{
+  margin-top:14px;padding-top:12px;border-top:1px solid rgba(245,163,0,.2)
+}
+.champ-runner-label{
+  font-size:8px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--cy);opacity:.65;display:block;margin-bottom:4px
+}
+.champ-runner-name{
+  font-family:Impact,"Arial Narrow",sans-serif;
+  font-size:14px;letter-spacing:.05em;text-transform:uppercase;color:var(--cy)
+}
+
+/* ── KEY STORYLINES ──────────────────────────────────────────── */
+.stories-hdr{
+  padding:32px 32px 16px;
+  border-top:1px solid var(--bord)
+}
+.stories-label{
+  font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--muted)
+}
+.stories{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
+  gap:12px;padding:0 32px 48px
+}
+.story{
+  background:var(--surf);border:1px solid var(--bord);border-radius:4px;
+  padding:18px 20px;
+}
+.story-icon{font-size:18px;margin-bottom:10px;display:block}
+.story-title{
+  font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--text);margin-bottom:6px
+}
+.story-body{font-size:12px;color:var(--muted);line-height:1.65}
+.story-body strong{color:var(--text);font-weight:600}
+.story.gold{border-color:rgba(245,163,0,.22);background:rgba(245,163,0,.04)}
+.story.gold .story-title{color:var(--am)}
+.story.teal{border-color:rgba(0,194,178,.18);background:rgba(0,194,178,.03)}
+.story.teal .story-title{color:var(--cy)}
+
+/* ── FOOTER ──────────────────────────────────────────────────── */
+.footer{
+  padding:22px 32px;border-top:1px solid var(--bord);
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:12px
+}
+.footer-left{font-size:11px;color:var(--dim)}
+.footer-left strong{color:var(--muted)}
+.footer-right{font-size:10px;color:var(--dim);letter-spacing:.06em;text-align:right}
+
+@media(max-width:600px){
+  .site-hdr{padding:16px 18px 12px}
+  .toolbar,.bscroll,.stories{padding-left:18px;padding-right:18px}
+  .stories-hdr{padding-left:18px;padding-right:18px}
+  .footer{padding:18px}
+  .site-title{font-size:22px}
+}
+</style>
+</head>
+<body>
+
+<!-- SITE HEADER -->
+<header class="site-hdr">
+  <div class="site-eyebrow"><span>⚽ FIFA WORLD CUP 2026</span> Machine Learning Bracket Prediction</div>
+  <h1 class="site-title"><em>Srotriyo Sengupta's</em> World Cup 2026 Prediction</h1>
+  <p class="site-deck">A game-by-game XGBoost prediction pipeline trained on international football data — incorporating ELO ratings, expected goals, squad club chemistry, international experience, and the 2025 Ballon d'Or rankings. Every knockout match from the Round of 32 to the Final, probabilities and all.</p>
+  <div class="site-meta">
+    <div class="site-byline">Analysis by <strong>Srotriyo Sengupta</strong> · June 2026</div>
+    <div class="site-chips">
+      <span class="chip">XGBoost</span>
+      <span class="chip">15 Features</span>
+      <span class="chip">500k Simulations</span>
+      <span class="chip chip-champ">🇪🇸 Spain — Champion</span>
+      <span class="chip chip-runner">🇫🇷 France — Runner-up</span>
+    </div>
+  </div>
+</header>
+
+<!-- TOOLBAR -->
+<div class="toolbar">
+  <div class="tb-rounds">
+    <span class="tb-rnd">R32</span>
+    <span class="tb-rnd">→</span>
+    <span class="tb-rnd">R16</span>
+    <span class="tb-rnd">→</span>
+    <span class="tb-rnd">QF</span>
+    <span class="tb-rnd">→</span>
+    <span class="tb-rnd">SF</span>
+    <span class="tb-rnd">→</span>
+    <span class="tb-rnd active">Final · Jul 19</span>
+  </div>
+  <div class="tb-model">XGBoost · ELO · xG · Ballon d'Or 2025 · Club Chemistry · 500k Monte Carlo</div>
+</div>
+
+<!-- BRACKET -->
+<div class="bscroll">
+  <div class="binner" id="bracket"></div>
+</div>
+
+<!-- STORYLINES -->
+<div class="stories-hdr">
+  <span class="stories-label">Key Storylines from the Model</span>
+</div>
+<div class="stories">
+  <div class="story gold">
+    <span class="story-icon">🏅</span>
+    <div class="story-title">Dembélé wins Ballon d'Or 2025</div>
+    <div class="story-body">Ousmane Dembélé's #1 Ballon d'Or raises <strong>France's squad brilliance score to 1.000</strong> — the highest of all 48 teams. Paired with Mbappé (#5 globally), France carries deep individual quality into the tournament but ultimately falls to Spain in the Final.</div>
+  </div>
+  <div class="story gold">
+    <span class="story-icon">⭐</span>
+    <div class="story-title">Yamal Effect: Spain past Portugal</div>
+    <div class="story-body">Lamine Yamal, Ballon d'Or #2 (score 0.965), gives Spain the decisive edge over Portugal in R16 — <strong>51.5% Spain</strong>. The model's Ballon d'Or feature captures what ELO and xG alone cannot: the difference a generational talent makes in knockout football.</div>
+  </div>
+  <div class="story teal">
+    <span class="story-icon">⚽</span>
+    <div class="story-title">Spain's Barcelona Chemistry</div>
+    <div class="story-body">Spain has <strong>9 FC Barcelona players</strong> in their squad — the highest club-chemistry score (0.084) of all 48 nations. The model treats shared club training as a compounding advantage: tactical familiarity + Yamal's BdO #2 + Spain's ELO = tournament winner.</div>
+  </div>
+  <div class="story teal">
+    <span class="story-icon">🤖</span>
+    <div class="story-title">ML Pipeline · 15 Features</div>
+    <div class="story-body">XGBoost multi-class classifier (win/draw/loss) with isotonic probability calibration. Feature importance: <strong>net xG (13.0%)</strong>, Ballon d'Or diff (12.6%), ELO diff (11.0%), club chemistry diff (10.8%), squad prestige, international experience. Regularized to log-loss 0.44.</div>
+  </div>
+  <div class="story">
+    <span class="story-icon">⚡</span>
+    <div class="story-title">Senegal's Surprise Run</div>
+    <div class="story-body">Senegal upsets Egypt in R32 (67.5%) then eliminates the USA in R16 (63.7%), reaching the QF before falling to <strong>Spain 51.6%</strong> — the tightest match of Spain's entire run. African football's most dangerous dark horse in this tournament.</div>
+  </div>
+  <div class="story">
+    <span class="story-icon">🔥</span>
+    <div class="story-title">Spain Dismantles Argentina</div>
+    <div class="story-body">The Semi-Final against defending champions Argentina is Spain's most dominant prediction: <strong>79.2%</strong>. Spain's combination of club chemistry, Yamal's brilliance, and strong ELO proves overwhelming — the single most decisive knockout match in the entire bracket.</div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-left">
+    <strong>Srotriyo Sengupta</strong> · WC 2026 AI Bracket Prediction · June 2026<br>
+    XGBoost pipeline · ELO + xG + Ballon d'Or 2025 feature engineering · 500,000 Monte Carlo simulations
+  </div>
+  <div class="footer-right">
+    Model trained on historical international match data<br>
+    Predictions reflect probability — not certainty
+  </div>
+</footer>
+
+<script>
+// ── Layout ────────────────────────────────────────────────────
+const CARD_H  = 70;   // 24 home + 3 bar + 24 away + 16 venue + 3 border
+const ROW_H   = 24;
+const BAR_H   = 3;
+const FINAL_H = 86;
+const SLOT    = 78;
+const N       = 16;
+const TOTAL_H = SLOT * N;
+const HDR_H   = 44;
+const COL_W   = 204;
+const CONN_W  = 44;
+const CHAMPION = "Spain";
+
+function slotH(ri)  { return SLOT * Math.pow(2, ri); }
+function cardTop(ri, mi, isFinal) {
+  const sh = slotH(ri);
+  const h  = isFinal ? FINAL_H : CARD_H;
+  return mi * sh + (sh - h) / 2;
+}
+
+// ── Data ─────────────────────────────────────────────────────
+const ROUNDS = [
+  { name:"Round of 32", date:"Jun 28 – Jul 2", matches:[
+    {h:"South Africa",hf:"🇿🇦",a:"Canada",      af:"🇨🇦",ha:48.4,aa:51.6,w:"Canada",       close:true,  dt:"Jun 28",venue:"BMO Field · Toronto"},
+    {h:"Germany",     hf:"🇩🇪",a:"Sweden",       af:"🇸🇪",ha:60.3,aa:39.7,w:"Germany",                  dt:"Jun 28",venue:"MetLife · New York"},
+    {h:"Netherlands", hf:"🇳🇱",a:"Morocco",      af:"🇲🇦",ha:82.0,aa:18.0,w:"Netherlands",              dt:"Jun 29",venue:"AT&T Stadium · Dallas"},
+    {h:"Brazil",      hf:"🇧🇷",a:"Japan",        af:"🇯🇵",ha:82.0,aa:18.0,w:"Brazil",                   dt:"Jun 29",venue:"SoFi Stadium · Los Angeles"},
+    {h:"France",      hf:"🇫🇷",a:"Ecuador",      af:"🇪🇨",ha:74.6,aa:25.4,w:"France",                   dt:"Jun 30",venue:"Hard Rock Stadium · Miami"},
+    {h:"Ivory Coast", hf:"🇨🇮",a:"Norway",       af:"🇳🇴",ha:48.4,aa:51.6,w:"Norway",       close:true,  dt:"Jun 30",venue:"Lumen Field · Seattle"},
+    {h:"Mexico",      hf:"🇲🇽",a:"Bosnia",       af:"🇧🇦",ha:67.4,aa:32.6,w:"Mexico",                   dt:"Jul 1", venue:"Estadio Azteca · Mexico City"},
+    {h:"England",     hf:"🏴󠁧󠁢󠁥󠁮󠁧󠁿",a:"Paraguay",    af:"🇵🇾",ha:67.4,aa:32.6,w:"England",                  dt:"Jul 1", venue:"Allegiant Stadium · Las Vegas"},
+    {h:"USA",         hf:"🇺🇸",a:"S. Korea",     af:"🇰🇷",ha:82.0,aa:18.0,w:"USA",                      dt:"Jul 1", venue:"Arrowhead Stadium · Kansas City"},
+    {h:"Egypt",       hf:"🇪🇬",a:"Senegal",      af:"🇸🇳",ha:32.5,aa:67.5,w:"Senegal",      upset:true,  dt:"Jul 2", venue:"Rose Bowl · Los Angeles",        note:"⚡ Senegal upsets Egypt"},
+    {h:"Portugal",    hf:"🇵🇹",a:"Ghana",        af:"🇬🇭",ha:82.0,aa:18.0,w:"Portugal",                 dt:"Jul 2", venue:"Lincoln Financial · Philadelphia"},
+    {h:"Spain",       hf:"🇪🇸",a:"Austria",      af:"🇦🇹",ha:78.9,aa:21.1,w:"Spain",                    dt:"Jul 2", venue:"BC Place · Vancouver"},
+    {h:"Switzerland", hf:"🇨🇭",a:"Croatia",      af:"🇭🇷",ha:57.3,aa:42.7,w:"Switzerland",              dt:"Jun 28",venue:"Levi's Stadium · San Francisco"},
+    {h:"Argentina",   hf:"🇦🇷",a:"Cabo Verde",   af:"🇨🇻",ha:82.0,aa:18.0,w:"Argentina",               dt:"Jun 29",venue:"Mercedes-Benz Stadium · Atlanta"},
+    {h:"Colombia",    hf:"🇨🇴",a:"Algeria",      af:"🇩🇿",ha:59.4,aa:40.6,w:"Colombia",                 dt:"Jun 30",venue:"Estadio BBVA · Monterrey"},
+    {h:"Australia",   hf:"🇦🇺",a:"Belgium",      af:"🇧🇪",ha:36.3,aa:63.7,w:"Belgium",                  dt:"Jul 1", venue:"Lumen Field · Seattle"},
+  ]},
+  { name:"Round of 16", date:"Jul 5 – 7", matches:[
+    {h:"Canada",      hf:"🇨🇦",a:"Germany",      af:"🇩🇪",ha:48.4,aa:51.6,w:"Germany",      close:true,  dt:"Jul 5", venue:"BMO Field · Toronto"},
+    {h:"Netherlands", hf:"🇳🇱",a:"Brazil",       af:"🇧🇷",ha:48.4,aa:51.6,w:"Brazil",       close:true,  dt:"Jul 5", venue:"SoFi Stadium · Los Angeles"},
+    {h:"France",      hf:"🇫🇷",a:"Norway",       af:"🇳🇴",ha:75.8,aa:24.2,w:"France",                   dt:"Jul 5", venue:"Hard Rock Stadium · Miami"},
+    {h:"Mexico",      hf:"🇲🇽",a:"England",      af:"🏴󠁧󠁢󠁥󠁮󠁧󠁿",ha:48.4,aa:51.6,w:"England",      close:true,  dt:"Jul 6", venue:"Estadio Azteca · Mexico City"},
+    {h:"USA",         hf:"🇺🇸",a:"Senegal",      af:"🇸🇳",ha:36.3,aa:63.7,w:"Senegal",      upset:true,  dt:"Jul 6", venue:"MetLife · New York",             note:"⚡ Senegal advances"},
+    {h:"Portugal",    hf:"🇵🇹",a:"Spain",        af:"🇪🇸",ha:48.5,aa:51.5,w:"Spain",        close:true,  dt:"Jul 6", venue:"Rose Bowl · Los Angeles",        note:"Yamal + Dembélé BdO edge"},
+    {h:"Switzerland", hf:"🇨🇭",a:"Argentina",    af:"🇦🇷",ha:14.0,aa:86.0,w:"Argentina",               dt:"Jul 7", venue:"AT&T Stadium · Dallas"},
+    {h:"Colombia",    hf:"🇨🇴",a:"Belgium",      af:"🇧🇪",ha:56.9,aa:43.1,w:"Colombia",                 dt:"Jul 7", venue:"Mercedes-Benz Stadium · Atlanta"},
+  ]},
+  { name:"Quarter-Finals", date:"Jul 11 – 12", matches:[
+    {h:"Germany",     hf:"🇩🇪",a:"Brazil",       af:"🇧🇷",ha:38.3,aa:61.7,w:"Brazil",                   dt:"Jul 11",venue:"MetLife · New York"},
+    {h:"France",      hf:"🇫🇷",a:"England",      af:"🏴󠁧󠁢󠁥󠁮󠁧󠁿",ha:66.5,aa:33.5,w:"France",                   dt:"Jul 11",venue:"Hard Rock Stadium · Miami"},
+    {h:"Senegal",     hf:"🇸🇳",a:"Spain",        af:"🇪🇸",ha:48.4,aa:51.6,w:"Spain",        close:true,  dt:"Jul 12",venue:"Rose Bowl · Los Angeles"},
+    {h:"Argentina",   hf:"🇦🇷",a:"Colombia",     af:"🇨🇴",ha:76.3,aa:23.7,w:"Argentina",               dt:"Jul 12",venue:"AT&T Stadium · Dallas"},
+  ]},
+  { name:"Semi-Finals", date:"Jul 15 – 16", matches:[
+    {h:"Brazil",      hf:"🇧🇷",a:"France",       af:"🇫🇷",ha:48.4,aa:51.6,w:"France",       close:true,  dt:"Jul 15",venue:"MetLife · New York"},
+    {h:"Spain",       hf:"🇪🇸",a:"Argentina",    af:"🇦🇷",ha:79.2,aa:20.8,w:"Spain",                    dt:"Jul 16",venue:"Rose Bowl · Los Angeles"},
+  ]},
+  { name:"Final", date:"Jul 19", matches:[
+    {h:"France",      hf:"🇫🇷",a:"Spain",        af:"🇪🇸",ha:46.9,aa:53.1,w:"Spain",isFinal:true,        dt:"Jul 19",venue:"MetLife Stadium · East Rutherford, NJ"},
+  ]},
+];
+
+// ── Render ────────────────────────────────────────────────────
+const root  = document.getElementById("bracket");
+const svgNS = "http://www.w3.org/2000/svg";
+const totalW = ROUNDS.length * (COL_W + CONN_W) + COL_W + CONN_W + 200;
+const svgH   = TOTAL_H + HDR_H + 24;
+root.style.cssText = `position:relative;height:${svgH}px;width:${totalW}px`;
+
+const svg = document.createElementNS(svgNS,"svg");
+svg.setAttribute("width",  totalW);
+svg.setAttribute("height", svgH);
+svg.style.cssText = "position:absolute;top:0;left:0;pointer-events:none;overflow:visible";
+
+const animStyle = document.createElement("style");
+animStyle.textContent = `@keyframes dl{to{stroke-dashoffset:0}}`;
+document.head.appendChild(animStyle);
+
+let li = 0;
+function line(x1,y1,x2,y2,color,delay){
+  const len = Math.hypot(x2-x1,y2-y1)*1.6;
+  const p   = document.createElementNS(svgNS,"path");
+  const mx  = (x1+x2)/2;
+  p.setAttribute("d",`M${x1},${y1} C${mx},${y1} ${mx},${y2} ${x2},${y2}`);
+  p.style.cssText = `fill:none;stroke:${color};stroke-width:1.5;opacity:.55;
+    stroke-dasharray:${len};stroke-dashoffset:${len};
+    animation:dl .4s ease ${delay}s forwards`;
+  svg.appendChild(p);
+}
+
+ROUNDS.forEach((round, ri) => {
+  const colLeft = ri * (COL_W + CONN_W);
+
+  // Round column div
+  const col = document.createElement("div");
+  col.style.cssText = `position:absolute;left:${colLeft}px;top:0;width:${COL_W}px`;
+
+  const hdr = document.createElement("div");
+  hdr.className = "rnd-hdr";
+  hdr.innerHTML = `<span class="rnd-name">${round.name}</span><span class="rnd-date">${round.date}</span>`;
+  col.appendChild(hdr);
+  root.appendChild(col);
+
+  round.matches.forEach((m, mi) => {
+    const isFinal = !!m.isFinal;
+    const fh  = isFinal ? FINAL_H : CARD_H;
+    const top = cardTop(ri, mi, isFinal) + HDR_H;
+    const homeWon = m.w === m.h;
+    const awayWon = m.w === m.a;
+    const isC = m.w === CHAMPION;
+    const cc  = isC ? "am" : "cy";
+    const rowH = isFinal ? Math.floor((fh - BAR_H) / 2) : ROW_H;
+
+    const card = document.createElement("div");
+    card.className = "card";
+    card.style.cssText = `position:absolute;left:0;top:${top}px;width:${COL_W}px;height:${fh}px`;
+
+    const hBarCls = homeWon ? `pb-${cc}` : "pb-dim";
+    const aBarCls = awayWon ? `pb-${cc}` : "pb-dim";
+
+    card.innerHTML = `
+      <div class="tr ${homeWon?`win-${cc}`:'lose'}" style="height:${rowH}px">
+        <span class="tr-flag">${m.hf}</span>
+        <span class="tr-name">${m.h}</span>
+        <span class="tr-pct">${m.ha.toFixed(1)}%</span>
+        ${homeWon?`<span class="tr-dot"></span>`:''}
+      </div>
+      <div class="pbar">
+        <div class="${hBarCls}" style="width:${m.ha.toFixed(1)}%"></div>
+        <div class="${aBarCls}" style="width:${m.aa.toFixed(1)}%"></div>
+      </div>
+      <div class="tr ${awayWon?`win-${cc}`:'lose'}" style="height:${rowH}px">
+        <span class="tr-flag">${m.af}</span>
+        <span class="tr-name">${m.a}</span>
+        <span class="tr-pct">${m.aa.toFixed(1)}%</span>
+        ${awayWon?`<span class="tr-dot"></span>`:''}
+      </div>
+      ${m.note?`<div class="cnote${m.upset?' upset':m.close?' close':isC?' champ':''}">${m.note}</div>`:''}
+      ${m.dt?`<div class="card-venue">${m.dt} · ${m.venue}</div>`:''}
+    `;
+    col.appendChild(card);
+
+    // Connector to next round
+    if (ri < ROUNDS.length - 1) {
+      const nmi  = Math.floor(mi / 2);
+      const nTop = cardTop(ri+1, nmi, ri+1===ROUNDS.length-1&&ROUNDS[ri+1].matches[0].isFinal) + HDR_H;
+      const nFh  = (ri+1===ROUNDS.length-1&&ROUNDS[ri+1].matches[0].isFinal) ? FINAL_H : CARD_H;
+      const x1   = colLeft + COL_W;
+      const x2   = colLeft + COL_W + CONN_W;
+      const srcY = homeWon ? top + fh/4 : top + fh*3/4;
+      const dstY = nTop + nFh/2;
+      const clr  = isC ? "rgba(245,163,0,.75)" : "rgba(0,194,178,.55)";
+      line(x1, srcY, x2, dstY, clr, ri*.1 + mi*.03);
+    }
+
+    // Connector from Final to champion card
+    if (isFinal) {
+      const cx = colLeft + COL_W + CONN_W;
+      const cy = top + fh/2;
+      const srcY = awayWon ? top + fh*3/4 : top + fh/4;
+      line(colLeft + COL_W, srcY, cx + 28, cy, "rgba(245,163,0,.8)", .72);
+    }
+  });
+});
+
+root.appendChild(svg);
+
+// Champion card
+const champLeft = ROUNDS.length * (COL_W + CONN_W) + 28;
+const cw = document.createElement("div");
+cw.className = "champ-wrap";
+cw.style.cssText = `left:${champLeft}px;top:0;height:${svgH}px;`;
+cw.innerHTML = `
+  <div class="champ-card">
+    <span class="champ-trophy">🏆</span>
+    <span class="champ-label">Predicted Champion</span>
+    <span class="champ-flag">🇪🇸</span>
+    <div class="champ-name">Spain</div>
+    <span class="champ-prob">53.1% · Final vs France</span>
+    <div class="champ-runner">
+      <span class="champ-runner-label">Runner-up</span>
+      <div>🇫🇷 <span class="champ-runner-name">France</span></div>
+    </div>
+  </div>
+`;
+root.appendChild(cw);
+</script>
+</body>
+</html>
