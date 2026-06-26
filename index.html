@@ -213,6 +213,44 @@ html{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 .story.teal{border-color:rgba(0,194,178,.18);background:rgba(0,194,178,.03)}
 .story.teal .story-title{color:var(--cy)}
 
+/* ── BRONZE FINAL ───────────────────────────────────────────── */
+.bronze-wrap{
+  padding:0 32px 32px;
+}
+.bronze-hdr-row{
+  display:flex;align-items:center;gap:12px;margin-bottom:12px;
+}
+.bronze-label{
+  font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--muted);
+}
+.bronze-date-chip{
+  font-size:9px;letter-spacing:.06em;color:var(--dim);
+  border:1px solid var(--bord);border-radius:2px;padding:2px 8px;
+}
+.bronze-card{
+  display:inline-flex;align-items:stretch;
+  background:var(--card);border:1px solid var(--bord);border-radius:4px;
+  overflow:hidden;min-width:320px;max-width:440px;
+}
+.bronze-team{
+  flex:1;display:flex;align-items:center;gap:7px;
+  padding:11px 14px;font-size:12px;font-weight:600;
+}
+.bronze-team.winner{
+  background:rgba(0,194,178,.06);border-left:3px solid var(--cy);
+  color:var(--text);
+}
+.bronze-team.loser{color:var(--muted)}
+.bronze-pct{font-size:10px;font-weight:700;margin-left:auto;padding-left:8px}
+.bronze-team.winner .bronze-pct{color:var(--cy)}
+.bronze-divider{
+  width:1px;background:var(--bord);align-self:stretch;flex-shrink:0;
+}
+.bronze-note{
+  font-size:9.5px;color:var(--dim);margin-top:8px;letter-spacing:.03em;
+}
+
 /* ── FOOTER ──────────────────────────────────────────────────── */
 .footer{
   padding:22px 32px;border-top:1px solid var(--bord);
@@ -270,6 +308,28 @@ html{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 <!-- BRACKET -->
 <div class="bscroll">
   <div class="binner" id="bracket"></div>
+</div>
+
+<!-- BRONZE FINAL -->
+<div class="bronze-wrap">
+  <div class="bronze-hdr-row">
+    <span class="bronze-label">3rd Place Match</span>
+    <span class="bronze-date-chip">Jul 18 · Hard Rock Stadium · Miami</span>
+  </div>
+  <div class="bronze-card">
+    <div class="bronze-team winner">
+      <span>🇫🇷</span>
+      <span>France</span>
+      <span class="bronze-pct">66.5%</span>
+    </div>
+    <div class="bronze-divider"></div>
+    <div class="bronze-team loser">
+      <span>🏴󠁧󠁢󠁥󠁮󠁧󠁿</span>
+      <span>England</span>
+      <span class="bronze-pct">33.5%</span>
+    </div>
+  </div>
+  <div class="bronze-note">SF losers · France predicted to win 3rd place</div>
 </div>
 
 <!-- STORYLINES -->
