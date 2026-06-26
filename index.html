@@ -406,7 +406,7 @@ const ROUNDS = [
     {h:"England",     hf:"🏴󠁧󠁢󠁥󠁮󠁧󠁿",a:"Argentina",    af:"🇦🇷",ha:39.0,aa:61.0,w:"Argentina",               dt:"Jul 15",venue:"Rose Bowl · Los Angeles"},
   ]},
   { name:"3rd Place", date:"Jul 18", isBronze:true, matches:[
-    {h:"France",      hf:"🇫🇷",a:"England",       af:"🏴󠁧󠁢󠁥󠁮󠁧󠁿",ha:66.5,aa:33.5,w:"France",isBronze:true,   dt:"Jul 18",venue:"Hard Rock Stadium · Miami",     note:"SF losers"},
+    {h:"France",      hf:"🇫🇷",a:"England",       af:"🏴󠁧󠁢󠁥󠁮󠁧󠁿",ha:66.5,aa:33.5,w:"France",isBronze:true,   dt:"Jul 18",venue:"Hard Rock Stadium · Miami",     note:"Bronze Final"},
   ]},
   { name:"Final", date:"Jul 19", matches:[
     {h:"Spain",       hf:"🇪🇸",a:"Argentina",     af:"🇦🇷",ha:79.2,aa:20.8,w:"Spain",isFinal:true,        dt:"Jul 19",venue:"MetLife Stadium · East Rutherford, NJ"},
@@ -498,19 +498,17 @@ ROUNDS.forEach((round, ri) => {
     `;
     col.appendChild(card);
 
-    // Connectors: skip to/from bronze rounds
+    // Connectors: draw only to the immediately next round (no skipping over bronze)
     if (!round.isBronze) {
-      let nextRi = ri + 1;
-      while (nextRi < ROUNDS.length && ROUNDS[nextRi].isBronze) nextRi++;
-
-      if (nextRi < ROUNDS.length) {
+      const nextRi = ri + 1;
+      if (nextRi < ROUNDS.length && !ROUNDS[nextRi].isBronze) {
         const nextRound = ROUNDS[nextRi];
         const nmi      = Math.floor(mi / 2);
         const nIsFinal = !!nextRound.matches[0].isFinal;
         const nTop     = cardTop(nextRi, nmi, nIsFinal, false) + HDR_H;
         const nFh      = nIsFinal ? FINAL_H : CARD_H;
         const x1       = colLeft + COL_W;
-        const x2       = nextRi * (COL_W + CONN_W);
+        const x2       = colLeft + COL_W + CONN_W;
         const srcY     = homeWon ? top + fh/4 : top + fh*3/4;
         const dstY     = nTop + nFh/2;
         const clr      = isC ? "rgba(245,163,0,.75)" : "rgba(0,194,178,.55)";
