@@ -115,7 +115,14 @@ html{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 .tr.win-bronze::before{background:var(--bronze)}
 .win-bronze .tr-dot{background:var(--bronze)}
 .pb-bronze{background:var(--bronze-st)}
-.cnote.bronze-note-chip{color:var(--bronze);background:rgba(198,139,58,.08);border-color:rgba(198,139,58,.25)}
+.cnote.bronze-note-chip{
+  position:static;display:block;
+  color:var(--bronze);background:rgba(198,139,58,.08);
+  border:1px solid rgba(198,139,58,.25);border-radius:3px;
+  text-align:center;font-size:9px;letter-spacing:.04em;
+  padding:2px 6px;margin:2px 5px 0;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis
+}
 .tr.lose::before{background:transparent}
 .tr-flag{font-size:13px;line-height:1;flex-shrink:0}
 .tr.lose .tr-flag{filter:grayscale(55%) opacity(55%)}
@@ -461,7 +468,7 @@ ROUNDS.forEach((round, ri) => {
   round.matches.forEach((m, mi) => {
     const isFinal    = !!m.isFinal;
     const isBronzeM  = !!m.isBronze;
-    const fh  = isFinal ? FINAL_H : CARD_H;
+    const fh  = isFinal ? FINAL_H : (isBronzeM ? 84 : CARD_H);
     const top = cardTop(ri, mi, isFinal, isBronzeM) + HDR_H;
     const homeWon = m.w === m.h;
     const awayWon = m.w === m.a;
