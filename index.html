@@ -228,6 +228,26 @@ html{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 .story.teal{border-color:rgba(0,194,178,.18);background:rgba(0,194,178,.03)}
 .story.teal .story-title{color:var(--cy)}
 
+/* ── FLAG GALLERY ────────────────────────────────────────────── */
+.flags-hdr{padding:32px 32px 16px;border-top:1px solid var(--bord)}
+.flags-label{font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.flags-sub{font-size:11px;color:var(--dim);margin-top:4px;letter-spacing:.04em}
+.flags-grid{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(196px,1fr));
+  gap:10px;padding:0 32px 48px
+}
+.group-card{
+  background:var(--surf);border:1px solid var(--bord);border-radius:4px;
+  padding:12px 14px;
+}
+.group-lbl{
+  font-size:8.5px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--dim);margin-bottom:9px
+}
+.group-team{display:flex;align-items:center;gap:7px;height:24px}
+.gt-flag{font-size:15px;width:20px;text-align:center;flex-shrink:0;line-height:1}
+.gt-name{font-size:11px;color:var(--muted);letter-spacing:.02em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
 /* ── FOOTER ──────────────────────────────────────────────────── */
 .footer{
   padding:22px 32px;border-top:1px solid var(--bord);
@@ -321,6 +341,98 @@ html{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
     <span class="story-icon">⚡</span>
     <div class="story-title">Five R32 Upsets the Model Predicts</div>
     <div class="story-body">The model sees a chaotic R32: <strong>Bosnia upsets USA</strong> (51.6%), <strong>S. Korea upsets Egypt</strong> (63.5%), <strong>Ecuador upsets Mexico</strong> (51.6%), <strong>Iran upsets Australia</strong> (63.7%), and <strong>Croatia upsets Colombia</strong> (51.6%). Four of the five host nations or favourites fall before the Round of 16.</div>
+  </div>
+</div>
+
+<!-- FLAG GALLERY -->
+<div class="flags-hdr">
+  <div class="flags-label">48 Participating Nations</div>
+  <div class="flags-sub">FIFA World Cup 2026 · Hosted by USA, Canada &amp; Mexico · 12 Groups of 4</div>
+</div>
+<div class="flags-grid">
+  <div class="group-card">
+    <div class="group-lbl">Group A</div>
+    <div class="group-team"><span class="gt-flag">🇲🇽</span><span class="gt-name">Mexico</span></div>
+    <div class="group-team"><span class="gt-flag">🇿🇦</span><span class="gt-name">South Africa</span></div>
+    <div class="group-team"><span class="gt-flag">🇰🇷</span><span class="gt-name">South Korea</span></div>
+    <div class="group-team"><span class="gt-flag">🇨🇿</span><span class="gt-name">Czechia</span></div>
+  </div>
+  <div class="group-card">
+    <div class="group-lbl">Group B</div>
+    <div class="group-team"><span class="gt-flag">🇨🇭</span><span class="gt-name">Switzerland</span></div>
+    <div class="group-team"><span class="gt-flag">🇨🇦</span><span class="gt-name">Canada</span></div>
+    <div class="group-team"><span class="gt-flag">🇧🇦</span><span class="gt-name">Bosnia &amp; Herzegovina</span></div>
+    <div class="group-team"><span class="gt-flag">🇶🇦</span><span class="gt-name">Qatar</span></div>
+  </div>
+  <div class="group-card">
+    <div class="group-lbl">Group C</div>
+    <div class="group-team"><span class="gt-flag">🇧🇷</span><span class="gt-name">Brazil</span></div>
+    <div class="group-team"><span class="gt-flag">🇲🇦</span><span class="gt-name">Morocco</span></div>
+    <div class="group-team"><span class="gt-flag">🏴󠁧󠁢󠁳󠁣󠁴󠁿</span><span class="gt-name">Scotland</span></div>
+    <div class="group-team"><span class="gt-flag">🇭🇹</span><span class="gt-name">Haiti</span></div>
+  </div>
+  <div class="group-card">
+    <div class="group-lbl">Group D</div>
+    <div class="group-team"><span class="gt-flag">🇺🇸</span><span class="gt-name">USA</span></div>
+    <div class="group-team"><span class="gt-flag">🇦🇺</span><span class="gt-name">Australia</span></div>
+    <div class="group-team"><span class="gt-flag">🇵🇾</span><span class="gt-name">Paraguay</span></div>
+    <div class="group-team"><span class="gt-flag">🇹🇷</span><span class="gt-name">Turkey</span></div>
+  </div>
+  <div class="group-card">
+    <div class="group-lbl">Group E</div>
+    <div class="group-team"><span class="gt-flag">🇩🇪</span><span class="gt-name">Germany</span></div>
+    <div class="group-team"><span class="gt-flag">🇨🇮</span><span class="gt-name">Ivory Coast</span></div>
+    <div class="group-team"><span class="gt-flag">🇪🇨</span><span class="gt-name">Ecuador</span></div>
+    <div class="group-team"><span class="gt-flag">🇨🇼</span><span class="gt-name">Curaçao</span></div>
+  </div>
+  <div class="group-card">
+    <div class="group-lbl">Group F</div>
+    <div class="group-team"><span class="gt-flag">🇳🇱</span><span class="gt-name">Netherlands</span></div>
+    <div class="group-team"><span class="gt-flag">🇯🇵</span><span class="gt-name">Japan</span></div>
+    <div class="group-team"><span class="gt-flag">🇸🇪</span><span class="gt-name">Sweden</span></div>
+    <div class="group-team"><span class="gt-flag">🇹🇳</span><span class="gt-name">Tunisia</span></div>
+  </div>
+  <div class="group-card">
+    <div class="group-lbl">Group G</div>
+    <div class="group-team"><span class="gt-flag">🇪🇬</span><span class="gt-name">Egypt</span></div>
+    <div class="group-team"><span class="gt-flag">🇮🇷</span><span class="gt-name">Iran</span></div>
+    <div class="group-team"><span class="gt-flag">🇧🇪</span><span class="gt-name">Belgium</span></div>
+    <div class="group-team"><span class="gt-flag">🇳🇿</span><span class="gt-name">New Zealand</span></div>
+  </div>
+  <div class="group-card">
+    <div class="group-lbl">Group H</div>
+    <div class="group-team"><span class="gt-flag">🇪🇸</span><span class="gt-name">Spain</span></div>
+    <div class="group-team"><span class="gt-flag">🇺🇾</span><span class="gt-name">Uruguay</span></div>
+    <div class="group-team"><span class="gt-flag">🇨🇻</span><span class="gt-name">Cabo Verde</span></div>
+    <div class="group-team"><span class="gt-flag">🇸🇦</span><span class="gt-name">Saudi Arabia</span></div>
+  </div>
+  <div class="group-card">
+    <div class="group-lbl">Group I</div>
+    <div class="group-team"><span class="gt-flag">🇫🇷</span><span class="gt-name">France</span></div>
+    <div class="group-team"><span class="gt-flag">🇳🇴</span><span class="gt-name">Norway</span></div>
+    <div class="group-team"><span class="gt-flag">🇸🇳</span><span class="gt-name">Senegal</span></div>
+    <div class="group-team"><span class="gt-flag">🇮🇶</span><span class="gt-name">Iraq</span></div>
+  </div>
+  <div class="group-card">
+    <div class="group-lbl">Group J</div>
+    <div class="group-team"><span class="gt-flag">🇦🇷</span><span class="gt-name">Argentina</span></div>
+    <div class="group-team"><span class="gt-flag">🇦🇹</span><span class="gt-name">Austria</span></div>
+    <div class="group-team"><span class="gt-flag">🇩🇿</span><span class="gt-name">Algeria</span></div>
+    <div class="group-team"><span class="gt-flag">🇯🇴</span><span class="gt-name">Jordan</span></div>
+  </div>
+  <div class="group-card">
+    <div class="group-lbl">Group K</div>
+    <div class="group-team"><span class="gt-flag">🇨🇴</span><span class="gt-name">Colombia</span></div>
+    <div class="group-team"><span class="gt-flag">🇵🇹</span><span class="gt-name">Portugal</span></div>
+    <div class="group-team"><span class="gt-flag">🇨🇩</span><span class="gt-name">DR Congo</span></div>
+    <div class="group-team"><span class="gt-flag">🇺🇿</span><span class="gt-name">Uzbekistan</span></div>
+  </div>
+  <div class="group-card">
+    <div class="group-lbl">Group L</div>
+    <div class="group-team"><span class="gt-flag">🏴󠁧󠁢󠁥󠁮󠁧󠁿</span><span class="gt-name">England</span></div>
+    <div class="group-team"><span class="gt-flag">🇬🇭</span><span class="gt-name">Ghana</span></div>
+    <div class="group-team"><span class="gt-flag">🇭🇷</span><span class="gt-name">Croatia</span></div>
+    <div class="group-team"><span class="gt-flag">🇵🇦</span><span class="gt-name">Panama</span></div>
   </div>
 </div>
 
