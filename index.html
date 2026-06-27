@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Srotriyo Sengupta's WC 2026 Bracket Prediction</title>
-<meta name="description" content="Game-by-game machine learning prediction for FIFA World Cup 2026 by Srotriyo Sengupta. XGBoost + host familiarity boost. Argentina leads 500k simulation at 14.46%. Predicted champion: Spain over France in a 51.3% knife-edge Final.">
+<meta name="description" content="Game-by-game machine learning prediction for FIFA World Cup 2026 by Srotriyo Sengupta. XGBoost + host familiarity boost. Argentina leads 500k simulation at 14.46%. Predicted champion: Spain over Argentina 77.9% in the Final.">
 <meta name="author" content="Srotriyo Sengupta">
 
 <!-- Open Graph -->
 <meta property="og:type"        content="article">
 <meta property="og:title"       content="Srotriyo Sengupta's WC 2026 Bracket Prediction — Spain are Champions">
-<meta property="og:description" content="XGBoost + 10 features + host familiarity. Argentina leads 500k sim at 14.46%. Spain beats France 51.3% in Final. Mexico eliminates England in R16. Full bracket by Srotriyo Sengupta.">
+<meta property="og:description" content="XGBoost + host familiarity boost. Argentina leads 500k sim at 14.46%. Spain beats Argentina 77.9% in Final. Norway stuns Brazil R16. Belgium crushes USA R16. Full bracket by Srotriyo Sengupta.">
 <meta property="og:site_name"   content="Srotriyo Sengupta · Data Analysis">
 
 <!-- Twitter Card -->
@@ -507,23 +507,23 @@ html{
 <div class="stories">
   <div class="story gold">
     <span class="story-icon">🏅</span>
-    <div class="story-title">Spain's Narrow Road — Portugal, Senegal, Argentina, France</div>
-    <div class="story-body">Spain's path is the hardest draw in the tournament: Portugal in R16 (<strong>51.9%</strong>), Senegal in QF (<strong>51.2%</strong>), Argentina in the SF (<strong>76.3%</strong>), and France in the Final (<strong>51.3%</strong>). Three consecutive matches at essentially coin-flip odds before dismantling Argentina — then a knife-edge Final.</div>
+    <div class="story-title">The "Death Half" — France, Spain & Portugal Together Again</div>
+    <div class="story-body">The official draw placed France, Spain, and Portugal all in the <strong>same bracket half</strong>. Only one can reach the Final. The model predicts Spain beats Portugal in R16 (<strong>63.8%</strong>), then Belgium in QF (75.3%), then defeats France in the Semi-Final (<strong>61.4%</strong>) — Yamal vs Dembélé, both Ballon d'Or top-2, on the same side of the draw.</div>
   </div>
   <div class="story gold">
-    <span class="story-icon">🇲🇽</span>
-    <div class="story-title">Mexico Silences England — The R16 Shock</div>
-    <div class="story-body">The model's biggest upset in the knockout stage: Mexico eliminates England in the Round of 16 at <strong>61.5%</strong>. Mexico's host-country ELO boost and solid squad chemistry ends England's campaign early — Bellingham and co. go home at the R16 stage.</div>
+    <span class="story-icon">🇳🇴</span>
+    <div class="story-title">Norway's Giant Run — Stuns Brazil, Reaches QF</div>
+    <div class="story-body">The model's biggest shock: Norway edges Ivory Coast in R32 (62.8%), then stuns Brazil in a coin-flip R16 at <strong>51.2%</strong>. Haaland's Ballon d'Or score combined with Norway's underrated ELO make them dark horses — they fall to England in the QF at 21.4%, but the run itself is the story.</div>
   </div>
   <div class="story gold">
     <span class="story-icon">⭐</span>
-    <div class="story-title">Yamal Effect: Spain Edges Portugal in R16</div>
-    <div class="story-body">Lamine Yamal, Ballon d'Or #2 (score 0.965), gives Spain the decisive edge over Portugal in a knife-edge R16 clash — <strong>51.9% Spain</strong>. The model's Ballon d'Or feature captures what ELO and xG alone cannot: the difference a generational talent makes in knockout football.</div>
+    <div class="story-title">Yamal Effect: Spain Beats Portugal 63.8% in R16</div>
+    <div class="story-body">Lamine Yamal, Ballon d'Or #2 (score 0.965), gives Spain a decisive edge over Portugal in R16 — <strong>63.8% Spain</strong>. The model's Ballon d'Or feature captures what ELO and xG alone cannot: the difference a generational talent makes in knockout football. Stronger than the old 51.5% edge.</div>
   </div>
   <div class="story teal">
     <span class="story-icon">🔥</span>
-    <div class="story-title">The Closest Final — Spain vs France at 51.3%</div>
-    <div class="story-body">The Final is virtually a coin flip: Spain <strong>51.3%</strong> over France. The two top Ballon d'Or teams — Yamal (0.965) vs Dembélé/Cherki/Doué — clash after travelling opposite sides of the bracket. Spain's Barcelona chemistry edges a French side with deeper attacking options.</div>
+    <div class="story-title">Spain Dismantles Argentina in the Final — 77.9%</div>
+    <div class="story-body">Spain meets Argentina in the Final — opposite halves of the bracket, only one path. Spain's combination of Yamal's brilliance, Barcelona club chemistry, and top ELO makes them the clear favourite at <strong>77.9%</strong>. Argentina edges England in a knife-edge SF (51.6%) to get there.</div>
   </div>
   <div class="story teal">
     <span class="story-icon">🤖</span>
@@ -573,64 +573,64 @@ function cardTop(ri, mi, isFinal, isBronzeMatch) {
 
 // ── Data ─────────────────────────────────────────────────────
 const ROUNDS = [
-  // R32 ordered so adjacent pairs feed the same R16 game (correct bracket paths)
+  // R32 ordered so adjacent pairs feed the same R16 game (matches FotMob official bracket)
   { name:"Round of 32", date:"Jun 28 – Jul 3", matches:[
-    // LEFT half — section 1 (→ R16: Canada vs Germany)
-    {h:"South Africa",hf:"🇿🇦",a:"Canada",       af:"🇨🇦",ha:48.2,aa:51.8,w:"Canada",       close:true,  dt:"Jun 28",venue:"BMO Field · Toronto"},
-    {h:"Germany",     hf:"🇩🇪",a:"Sweden",        af:"🇸🇪",ha:60.9,aa:39.1,w:"Germany",                  dt:"Jun 28",venue:"MetLife Stadium · New York"},
-    // LEFT half — section 2 (→ R16: Netherlands vs Brazil)
-    {h:"Netherlands", hf:"🇳🇱",a:"Morocco",       af:"🇲🇦",ha:80.9,aa:19.1,w:"Netherlands",              dt:"Jun 29",venue:"AT&T Stadium · Dallas"},
-    {h:"Brazil",      hf:"🇧🇷",a:"Japan",         af:"🇯🇵",ha:80.9,aa:19.1,w:"Brazil",                   dt:"Jun 29",venue:"SoFi Stadium · Los Angeles"},
-    // LEFT half — section 3 (→ R16: France vs Norway)
-    {h:"France",      hf:"🇫🇷",a:"Ecuador",       af:"🇪🇨",ha:72.2,aa:27.8,w:"France",                   dt:"Jun 30",venue:"Hard Rock Stadium · Miami"},
-    {h:"Ivory Coast", hf:"🇨🇮",a:"Norway",        af:"🇳🇴",ha:48.8,aa:51.2,w:"Norway",       close:true,  dt:"Jun 30",venue:"Lumen Field · Seattle"},
-    // LEFT half — section 4 (→ R16: Mexico vs England)
-    {h:"Mexico",      hf:"🇲🇽",a:"Bosnia",        af:"🇧🇦",ha:67.3,aa:32.7,w:"Mexico",                   dt:"Jul 1", venue:"Estadio Azteca · Mexico City"},
-    {h:"England",     hf:"🏴󠁧󠁢󠁥󠁮󠁧󠁿",a:"Paraguay",     af:"🇵🇾",ha:66.5,aa:33.5,w:"England",                  dt:"Jul 1", venue:"MetLife Stadium · New York"},
-    // RIGHT half — section 5 (→ R16: USA vs Senegal)
-    {h:"USA",         hf:"🇺🇸",a:"South Korea",   af:"🇰🇷",ha:81.5,aa:18.5,w:"USA",                      dt:"Jun 29",venue:"Arrowhead Stadium · Kansas City"},
-    {h:"Egypt",       hf:"🇪🇬",a:"Senegal",        af:"🇸🇳",ha:29.4,aa:70.6,w:"Senegal",     upset:true,  dt:"Jun 28",venue:"Mercedes-Benz Stadium · Atlanta",  note:"⚡ Senegal dominates Egypt!"},
-    // RIGHT half — section 6 (→ R16: Portugal vs Spain)
-    {h:"Portugal",    hf:"🇵🇹",a:"Ghana",          af:"🇬🇭",ha:80.9,aa:19.1,w:"Portugal",                 dt:"Jul 2", venue:"Lincoln Financial · Philadelphia"},
-    {h:"Spain",       hf:"🇪🇸",a:"Austria",        af:"🇦🇹",ha:77.1,aa:22.9,w:"Spain",                    dt:"Jul 2", venue:"Rose Bowl · Los Angeles"},
-    // RIGHT half — section 7 (→ R16: Switzerland vs Argentina)
-    {h:"Switzerland", hf:"🇨🇭",a:"Croatia",        af:"🇭🇷",ha:58.0,aa:42.0,w:"Switzerland",              dt:"Jul 2", venue:"BC Place · Vancouver"},
-    {h:"Argentina",   hf:"🇦🇷",a:"Cabo Verde",     af:"🇨🇻",ha:81.2,aa:18.8,w:"Argentina",               dt:"Jul 3", venue:"AT&T Stadium · Dallas"},
-    // RIGHT half — section 8 (→ R16: Colombia vs Belgium)
-    {h:"Colombia",    hf:"🇨🇴",a:"Algeria",        af:"🇩🇿",ha:60.4,aa:39.6,w:"Colombia",                 dt:"Jul 3", venue:"Estadio BBVA · Monterrey"},
-    {h:"Australia",   hf:"🇦🇺",a:"Belgium",        af:"🇧🇪",ha:38.2,aa:61.8,w:"Belgium",     upset:true,  dt:"Jul 3", venue:"Levi's Stadium · San Francisco",    note:"⚡ Belgium stuns Australia!"},
+    // LEFT half — top section (→ R16: Germany vs France)
+    {h:"Germany",     hf:"🇩🇪",a:"Paraguay",     af:"🇵🇾",ha:66.5,aa:33.5,w:"Germany",                  dt:"Jun 29",venue:"MetLife Stadium · New York"},
+    {h:"France",      hf:"🇫🇷",a:"Sweden",        af:"🇸🇪",ha:72.2,aa:27.8,w:"France",                   dt:"Jun 30",venue:"Hard Rock Stadium · Miami"},
+    // LEFT half — top section (→ R16: Canada vs Netherlands)
+    {h:"South Africa",hf:"🇿🇦",a:"Canada",       af:"🇨🇦",ha:27.0,aa:73.0,w:"Canada",       upset:true,  dt:"Jun 28",venue:"BMO Field · Toronto",             note:"⚡ Canada dominates!"},
+    {h:"Netherlands", hf:"🇳🇱",a:"Morocco",       af:"🇲🇦",ha:90.0,aa:10.0,w:"Netherlands",              dt:"Jun 29",venue:"AT&T Stadium · Dallas"},
+    // LEFT half — bottom section (→ R16: Portugal vs Spain)
+    {h:"Portugal",    hf:"🇵🇹",a:"Ghana",         af:"🇬🇭",ha:75.2,aa:24.8,w:"Portugal",                 dt:"Jul 2", venue:"Lincoln Financial · Philadelphia"},
+    {h:"Spain",       hf:"🇪🇸",a:"Austria",       af:"🇦🇹",ha:72.4,aa:27.6,w:"Spain",                    dt:"Jul 2", venue:"Rose Bowl · Los Angeles"},
+    // LEFT half — bottom section (→ R16: USA vs Belgium)
+    {h:"USA",         hf:"🇺🇸",a:"Bosnia",        af:"🇧🇦",ha:81.7,aa:18.3,w:"USA",                      dt:"Jul 1", venue:"Arrowhead Stadium · Kansas City"},
+    {h:"Belgium",     hf:"🇧🇪",a:"S. Korea",      af:"🇰🇷",ha:80.7,aa:19.3,w:"Belgium",                  dt:"Jul 1", venue:"Allegiant Stadium · Las Vegas"},
+    // RIGHT half — top section (→ R16: Brazil vs Norway)
+    {h:"Brazil",      hf:"🇧🇷",a:"Japan",         af:"🇯🇵",ha:90.0,aa:10.0,w:"Brazil",                   dt:"Jun 29",venue:"SoFi Stadium · Los Angeles"},
+    {h:"Ivory Coast", hf:"🇨🇮",a:"Norway",        af:"🇳🇴",ha:37.2,aa:62.8,w:"Norway",       upset:true,  dt:"Jun 30",venue:"Lumen Field · Seattle",           note:"⚡ Norway edges Ivory Coast"},
+    // RIGHT half — top section (→ R16: Ecuador vs England)
+    {h:"Mexico",      hf:"🇲🇽",a:"Ecuador",       af:"🇪🇨",ha:27.4,aa:72.6,w:"Ecuador",      upset:true,  dt:"Jun 30",venue:"Estadio Azteca · Mexico City",    note:"⚡ Ecuador upsets Mexico!"},
+    {h:"England",     hf:"🏴󠁧󠁢󠁥󠁮󠁧󠁿",a:"Senegal",      af:"🇸🇳",ha:87.2,aa:12.8,w:"England",                  dt:"Jul 1", venue:"MetLife Stadium · New York"},
+    // RIGHT half — bottom section (→ R16: Argentina vs Australia)
+    {h:"Argentina",   hf:"🇦🇷",a:"Cabo Verde",    af:"🇨🇻",ha:75.8,aa:24.2,w:"Argentina",               dt:"Jul 3", venue:"Mercedes-Benz Stadium · Atlanta"},
+    {h:"Australia",   hf:"🇦🇺",a:"Egypt",         af:"🇪🇬",ha:59.8,aa:40.2,w:"Australia",                dt:"Jul 3", venue:"Levi's Stadium · San Francisco"},
+    // RIGHT half — bottom section (→ R16: Switzerland vs Croatia)
+    {h:"Switzerland", hf:"🇨🇭",a:"Iran",          af:"🇮🇷",ha:66.0,aa:34.0,w:"Switzerland",              dt:"Jul 2", venue:"BC Place · Vancouver"},
+    {h:"Colombia",    hf:"🇨🇴",a:"Croatia",       af:"🇭🇷",ha:48.4,aa:51.6,w:"Croatia",      close:true,  dt:"Jul 3", venue:"Estadio BBVA · Monterrey",        note:"⚡ Croatia edges Colombia"},
   ]},
   { name:"Round of 16", date:"Jul 4 – 7", matches:[
-    // LEFT half — top (→ QF: Germany vs Brazil)
-    {h:"Canada",      hf:"🇨🇦",a:"Germany",       af:"🇩🇪",ha:49.8,aa:50.2,w:"Germany",     close:true,  dt:"Jul 4", venue:"BMO Field · Toronto",             note:"Coin-flip thriller"},
-    {h:"Netherlands", hf:"🇳🇱",a:"Brazil",        af:"🇧🇷",ha:48.8,aa:51.2,w:"Brazil",      close:true,  dt:"Jul 4", venue:"SoFi Stadium · Los Angeles"},
-    // LEFT half — bottom (→ QF: France vs Mexico)
-    {h:"France",      hf:"🇫🇷",a:"Norway",        af:"🇳🇴",ha:75.3,aa:24.7,w:"France",                   dt:"Jul 5", venue:"MetLife Stadium · New York"},
-    {h:"Mexico",      hf:"🇲🇽",a:"England",       af:"🏴󠁧󠁢󠁥󠁮󠁧󠁿",ha:61.5,aa:38.5,w:"Mexico",     upset:true,  dt:"Jul 5", venue:"AT&T Stadium · Dallas",          note:"⚡ Mexico eliminates England!"},
-    // RIGHT half — top (→ QF: Senegal vs Spain)
-    {h:"USA",         hf:"🇺🇸",a:"Senegal",        af:"🇸🇳",ha:47.5,aa:52.5,w:"Senegal",    close:true,  dt:"Jul 6", venue:"Hard Rock Stadium · Miami"},
-    {h:"Portugal",    hf:"🇵🇹",a:"Spain",          af:"🇪🇸",ha:48.1,aa:51.9,w:"Spain",      close:true,  dt:"Jul 6", venue:"Rose Bowl · Los Angeles",         note:"Yamal edge 51.9%"},
-    // RIGHT half — bottom (→ QF: Argentina vs Colombia)
-    {h:"Switzerland", hf:"🇨🇭",a:"Argentina",      af:"🇦🇷",ha:13.7,aa:86.3,w:"Argentina",               dt:"Jul 7", venue:"Mercedes-Benz Stadium · Atlanta"},
-    {h:"Colombia",    hf:"🇨🇴",a:"Belgium",        af:"🇧🇪",ha:55.0,aa:45.0,w:"Colombia",                 dt:"Jul 7", venue:"Arrowhead Stadium · Kansas City"},
+    // LEFT half — top (→ QF: France vs Netherlands)
+    {h:"Germany",     hf:"🇩🇪",a:"France",        af:"🇫🇷",ha:27.6,aa:72.4,w:"France",                   dt:"Jul 4", venue:"MetLife Stadium · New York"},
+    {h:"Canada",      hf:"🇨🇦",a:"Netherlands",   af:"🇳🇱",ha:21.1,aa:78.9,w:"Netherlands",              dt:"Jul 4", venue:"BMO Field · Toronto"},
+    // LEFT half — bottom (→ QF: Spain vs Belgium)
+    {h:"Portugal",    hf:"🇵🇹",a:"Spain",         af:"🇪🇸",ha:36.2,aa:63.8,w:"Spain",                    dt:"Jul 6", venue:"Rose Bowl · Los Angeles",         note:"Yamal edge 63.8%"},
+    {h:"USA",         hf:"🇺🇸",a:"Belgium",       af:"🇧🇪",ha:14.8,aa:85.2,w:"Belgium",      upset:true,  dt:"Jul 6", venue:"Arrowhead Stadium · Kansas City",  note:"⚡ Belgium crushes USA!"},
+    // RIGHT half — top (→ QF: Norway vs England)
+    {h:"Brazil",      hf:"🇧🇷",a:"Norway",        af:"🇳🇴",ha:48.8,aa:51.2,w:"Norway",       close:true,  dt:"Jul 5", venue:"SoFi Stadium · Los Angeles",      note:"⚡ Norway stuns Brazil!"},
+    {h:"Ecuador",     hf:"🇪🇨",a:"England",       af:"🏴󠁧󠁢󠁥󠁮󠁧󠁿",ha:34.7,aa:65.3,w:"England",                  dt:"Jul 5", venue:"Hard Rock Stadium · Miami"},
+    // RIGHT half — bottom (→ QF: Argentina vs Croatia)
+    {h:"Argentina",   hf:"🇦🇷",a:"Australia",     af:"🇦🇺",ha:78.0,aa:22.0,w:"Argentina",               dt:"Jul 7", venue:"AT&T Stadium · Dallas"},
+    {h:"Switzerland", hf:"🇨🇭",a:"Croatia",       af:"🇭🇷",ha:13.5,aa:86.5,w:"Croatia",      upset:true,  dt:"Jul 7", venue:"Mercedes-Benz Stadium · Atlanta",  note:"⚡ Croatia shocks Switzerland!"},
   ]},
   { name:"Quarter-Finals", date:"Jul 9 – 11", matches:[
-    // LEFT half (→ SF Jul 14: Brazil vs France)
-    {h:"Germany",     hf:"🇩🇪",a:"Brazil",        af:"🇧🇷",ha:39.6,aa:60.5,w:"Brazil",                   dt:"Jul 9", venue:"AT&T Stadium · Dallas"},
-    {h:"France",      hf:"🇫🇷",a:"Mexico",        af:"🇲🇽",ha:64.1,aa:35.9,w:"France",                   dt:"Jul 9", venue:"MetLife Stadium · New York"},
-    // RIGHT half (→ SF Jul 15: Spain vs Argentina)
-    {h:"Senegal",     hf:"🇸🇳",a:"Spain",          af:"🇪🇸",ha:48.8,aa:51.2,w:"Spain",      close:true,  dt:"Jul 11",venue:"Rose Bowl · Los Angeles",         note:"Closest QF: 51.2%"},
-    {h:"Argentina",   hf:"🇦🇷",a:"Colombia",       af:"🇨🇴",ha:78.4,aa:21.6,w:"Argentina",               dt:"Jul 11",venue:"Hard Rock Stadium · Miami"},
+    // LEFT half (→ SF Jul 14: France vs Spain)
+    {h:"France",      hf:"🇫🇷",a:"Netherlands",   af:"🇳🇱",ha:90.0,aa:10.0,w:"France",                   dt:"Jul 9", venue:"MetLife Stadium · New York"},
+    {h:"Spain",       hf:"🇪🇸",a:"Belgium",       af:"🇧🇪",ha:75.3,aa:24.7,w:"Spain",                    dt:"Jul 10",venue:"Rose Bowl · Los Angeles"},
+    // RIGHT half (→ SF Jul 15: England vs Argentina)
+    {h:"Norway",      hf:"🇳🇴",a:"England",       af:"🏴󠁧󠁢󠁥󠁮󠁧󠁿",ha:21.4,aa:78.6,w:"England",                  dt:"Jul 11",venue:"Hard Rock Stadium · Miami"},
+    {h:"Argentina",   hf:"🇦🇷",a:"Croatia",       af:"🇭🇷",ha:58.7,aa:41.3,w:"Argentina",                dt:"Jul 11",venue:"AT&T Stadium · Dallas"},
   ]},
   { name:"Semi-Finals", date:"Jul 14 – 15", matches:[
-    {h:"Brazil",      hf:"🇧🇷",a:"France",         af:"🇫🇷",ha:48.8,aa:51.2,w:"France",     close:true,  dt:"Jul 14",venue:"MetLife Stadium · New York",      note:"France through 51.2%"},
-    {h:"Spain",       hf:"🇪🇸",a:"Argentina",      af:"🇦🇷",ha:76.3,aa:23.7,w:"Spain",                   dt:"Jul 15",venue:"Rose Bowl · Los Angeles"},
+    {h:"France",      hf:"🇫🇷",a:"Spain",         af:"🇪🇸",ha:38.6,aa:61.4,w:"Spain",                    dt:"Jul 14",venue:"MetLife Stadium · New York"},
+    {h:"England",     hf:"🏴󠁧󠁢󠁥󠁮󠁧󠁿",a:"Argentina",    af:"🇦🇷",ha:48.4,aa:51.6,w:"Argentina",   close:true,  dt:"Jul 15",venue:"Rose Bowl · Los Angeles",         note:"Argentina through 51.6%"},
   ]},
   { name:"3rd Place", date:"Jul 18", isBronze:true, matches:[
-    {h:"Brazil",      hf:"🇧🇷",a:"Argentina",      af:"🇦🇷",ha:41.0,aa:59.0,w:"Argentina",isBronze:true, dt:"Jul 18",venue:"Hard Rock Stadium · Miami",       note:"Bronze Final"},
+    {h:"France",      hf:"🇫🇷",a:"England",       af:"🏴󠁧󠁢󠁥󠁮󠁧󠁿",ha:59.2,aa:40.8,w:"France",isBronze:true,   dt:"Jul 18",venue:"Hard Rock Stadium · Miami",     note:"Bronze Final"},
   ]},
   { name:"Final", date:"Jul 19", matches:[
-    {h:"France",      hf:"🇫🇷",a:"Spain",          af:"🇪🇸",ha:48.7,aa:51.3,w:"Spain",isFinal:true,close:true, dt:"Jul 19",venue:"MetLife Stadium · East Rutherford, NJ"},
+    {h:"Spain",       hf:"🇪🇸",a:"Argentina",     af:"🇦🇷",ha:77.9,aa:22.1,w:"Spain",isFinal:true,        dt:"Jul 19",venue:"MetLife Stadium · East Rutherford, NJ"},
   ]},
 ];
 
@@ -773,10 +773,10 @@ cw.innerHTML = `
     <span class="champ-label">Predicted Champion</span>
     <span class="champ-flag">🇪🇸</span>
     <div class="champ-name">Spain</div>
-    <span class="champ-prob">51.3% · Final vs France</span>
+    <span class="champ-prob">77.9% · Final vs Argentina</span>
     <div class="champ-runner">
       <span class="champ-runner-label">Runner-up</span>
-      <div>🇫🇷 <span class="champ-runner-name">France</span></div>
+      <div>🇦🇷 <span class="champ-runner-name">Argentina</span></div>
     </div>
   </div>
 `;
