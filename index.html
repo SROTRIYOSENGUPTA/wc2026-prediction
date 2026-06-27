@@ -532,8 +532,8 @@ html{
   </div>
   <div class="story">
     <span class="story-icon">⚡</span>
-    <div class="story-title">Five R32 Upsets the Model Predicts</div>
-    <div class="story-body">The model sees a chaotic R32: <strong>Bosnia upsets USA</strong> (51.6%), <strong>S. Korea upsets Egypt</strong> (63.5%), <strong>Ecuador upsets Mexico</strong> (51.6%), <strong>Iran upsets Australia</strong> (63.7%), and <strong>Croatia upsets Colombia</strong> (51.6%). Four of the five host nations or favourites fall before the Round of 16.</div>
+    <div class="story-title">Three R32 Upsets the Model Predicts</div>
+    <div class="story-body">With the group stage now confirmed, three upset picks remain live: <strong>Bosnia upsets USA</strong> (51.6%), <strong>Ecuador upsets Mexico</strong> (51.6%), and <strong>Croatia upsets Colombia</strong> (51.6%). The model's S. Korea/Egypt and Iran/Australia upset calls were voided — Belgium and Egypt qualified instead, changing those slots.</div>
   </div>
 </div>
 
@@ -586,7 +586,7 @@ const ROUNDS = [
     {h:"Spain",       hf:"🇪🇸",a:"Austria",       af:"🇦🇹",ha:78.9,aa:21.1,w:"Spain",                    dt:"Jul 2", venue:"Rose Bowl · Los Angeles"},
     // LEFT half — bottom section (→ R16: Bosnia vs S. Korea)
     {h:"USA",         hf:"🇺🇸",a:"Bosnia",        af:"🇧🇦",ha:48.4,aa:51.6,w:"Bosnia",       upset:true,  dt:"Jul 1", venue:"Arrowhead Stadium · Kansas City",  note:"⚡ Bosnia upsets USA"},
-    {h:"Egypt",       hf:"🇪🇬",a:"S. Korea",      af:"🇰🇷",ha:36.5,aa:63.5,w:"S. Korea",     upset:true,  dt:"Jul 1", venue:"Allegiant Stadium · Las Vegas",    note:"⚡ S. Korea upsets Egypt"},
+    {h:"Belgium",     hf:"🇧🇪",a:"S. Korea",      af:"🇰🇷",ha:65.0,aa:35.0,w:"Belgium",                  dt:"Jul 1", venue:"Allegiant Stadium · Las Vegas"},
     // RIGHT half — top section (→ R16: Brazil vs Norway)
     {h:"Brazil",      hf:"🇧🇷",a:"Japan",         af:"🇯🇵",ha:82.0,aa:18.0,w:"Brazil",                   dt:"Jun 29",venue:"SoFi Stadium · Los Angeles"},
     {h:"Ivory Coast", hf:"🇨🇮",a:"Norway",        af:"🇳🇴",ha:48.4,aa:51.6,w:"Norway",       close:true,  dt:"Jun 30",venue:"Lumen Field · Seattle"},
@@ -594,30 +594,30 @@ const ROUNDS = [
     {h:"Mexico",      hf:"🇲🇽",a:"Ecuador",       af:"🇪🇨",ha:48.4,aa:51.6,w:"Ecuador",      upset:true,  dt:"Jun 30",venue:"Estadio Azteca · Mexico City",    note:"⚡ Ecuador upsets Mexico"},
     {h:"England",     hf:"🏴󠁧󠁢󠁥󠁮󠁧󠁿",a:"Senegal",      af:"🇸🇳",ha:82.0,aa:18.0,w:"England",                  dt:"Jul 1", venue:"MetLife Stadium · New York"},
     // RIGHT half — bottom section (→ R16: Argentina vs Iran)
-    {h:"Argentina",   hf:"🇦🇷",a:"Uruguay",       af:"🇺🇾",ha:81.9,aa:18.1,w:"Argentina",               dt:"Jul 3", venue:"Mercedes-Benz Stadium · Atlanta"},
-    {h:"Australia",   hf:"🇦🇺",a:"Iran",          af:"🇮🇷",ha:36.3,aa:63.7,w:"Iran",         upset:true,  dt:"Jul 3", venue:"Levi's Stadium · San Francisco",  note:"⚡ Iran upsets Australia"},
+    {h:"Argentina",   hf:"🇦🇷",a:"Cape Verde",    af:"🇨🇻",ha:93.5,aa:6.5, w:"Argentina",               dt:"Jul 3", venue:"Mercedes-Benz Stadium · Atlanta"},
+    {h:"Australia",   hf:"🇦🇺",a:"Egypt",         af:"🇪🇬",ha:54.0,aa:46.0,w:"Australia",                dt:"Jul 3", venue:"Levi's Stadium · San Francisco"},
     // RIGHT half — bottom section (→ R16: Switzerland vs Croatia)
-    {h:"Switzerland", hf:"🇨🇭",a:"Algeria",       af:"🇩🇿",ha:85.0,aa:15.0,w:"Switzerland",              dt:"Jul 2", venue:"BC Place · Vancouver"},
+    {h:"Switzerland", hf:"🇨🇭",a:"Iran",          af:"🇮🇷",ha:72.0,aa:28.0,w:"Switzerland",              dt:"Jul 2", venue:"BC Place · Vancouver"},
     {h:"Colombia",    hf:"🇨🇴",a:"Croatia",       af:"🇭🇷",ha:48.4,aa:51.6,w:"Croatia",      upset:true,  dt:"Jul 3", venue:"Estadio BBVA · Monterrey",        note:"⚡ Croatia upsets Colombia"},
   ]},
   { name:"Round of 16", date:"Jul 4 – 7", matches:[
     // LEFT half — top (→ QF: France vs Netherlands)
     {h:"Germany",     hf:"🇩🇪",a:"France",        af:"🇫🇷",ha:27.9,aa:72.1,w:"France",                   dt:"Jul 4", venue:"MetLife Stadium · New York"},
     {h:"Canada",      hf:"🇨🇦",a:"Netherlands",   af:"🇳🇱",ha:19.9,aa:80.1,w:"Netherlands",              dt:"Jul 4", venue:"BMO Field · Toronto"},
-    // LEFT half — bottom (→ QF: Spain vs S. Korea)
+    // LEFT half — bottom (→ QF: Spain vs Belgium)
     {h:"Portugal",    hf:"🇵🇹",a:"Spain",         af:"🇪🇸",ha:48.5,aa:51.5,w:"Spain",        close:true,  dt:"Jul 6", venue:"Rose Bowl · Los Angeles",         note:"Yamal BdO edge"},
-    {h:"Bosnia",      hf:"🇧🇦",a:"S. Korea",      af:"🇰🇷",ha:26.6,aa:73.4,w:"S. Korea",                 dt:"Jul 6", venue:"Arrowhead Stadium · Kansas City"},
+    {h:"Bosnia",      hf:"🇧🇦",a:"Belgium",       af:"🇧🇪",ha:28.0,aa:72.0,w:"Belgium",                  dt:"Jul 6", venue:"Arrowhead Stadium · Kansas City"},
     // RIGHT half — top (→ QF: England vs Brazil)
     {h:"Brazil",      hf:"🇧🇷",a:"Norway",        af:"🇳🇴",ha:56.9,aa:43.1,w:"Brazil",                   dt:"Jul 5", venue:"SoFi Stadium · Los Angeles"},
     {h:"Ecuador",     hf:"🇪🇨",a:"England",       af:"🏴󠁧󠁢󠁥󠁮󠁧󠁿",ha:36.3,aa:63.7,w:"England",                  dt:"Jul 5", venue:"Hard Rock Stadium · Miami"},
     // RIGHT half — bottom (→ QF: Argentina vs Switzerland)
-    {h:"Argentina",   hf:"🇦🇷",a:"Iran",          af:"🇮🇷",ha:76.3,aa:23.7,w:"Argentina",               dt:"Jul 7", venue:"AT&T Stadium · Dallas"},
+    {h:"Argentina",   hf:"🇦🇷",a:"Australia",     af:"🇦🇺",ha:85.0,aa:15.0,w:"Argentina",               dt:"Jul 7", venue:"AT&T Stadium · Dallas"},
     {h:"Switzerland", hf:"🇨🇭",a:"Croatia",       af:"🇭🇷",ha:57.3,aa:42.7,w:"Switzerland",              dt:"Jul 7", venue:"Mercedes-Benz Stadium · Atlanta"},
   ]},
   { name:"Quarter-Finals", date:"Jul 9 – 11", matches:[
     // LEFT half (→ SF Jul 14: France vs Spain)
     {h:"France",      hf:"🇫🇷",a:"Netherlands",   af:"🇳🇱",ha:58.6,aa:41.4,w:"France",                   dt:"Jul 9", venue:"MetLife Stadium · New York"},
-    {h:"Spain",       hf:"🇪🇸",a:"S. Korea",      af:"🇰🇷",ha:74.4,aa:25.6,w:"Spain",                    dt:"Jul 10",venue:"Rose Bowl · Los Angeles"},
+    {h:"Spain",       hf:"🇪🇸",a:"Belgium",       af:"🇧🇪",ha:62.0,aa:38.0,w:"Spain",                    dt:"Jul 10",venue:"Rose Bowl · Los Angeles"},
     // RIGHT half (→ SF Jul 15: England vs Argentina)
     {h:"England",     hf:"🏴󠁧󠁢󠁥󠁮󠁧󠁿",a:"Brazil",       af:"🇧🇷",ha:63.7,aa:36.3,w:"England",      upset:true,  dt:"Jul 11",venue:"Hard Rock Stadium · Miami",     note:"⚡ England shocks Brazil!"},
     {h:"Argentina",   hf:"🇦🇷",a:"Switzerland",   af:"🇨🇭",ha:93.6,aa:6.4, w:"Argentina",               dt:"Jul 11",venue:"AT&T Stadium · Dallas"},
