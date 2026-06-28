@@ -190,6 +190,7 @@ html{
 .cnote.upset{color:var(--red)}
 .cnote.close{color:var(--cl)}
 .cnote.champ{color:var(--am)}
+.cnote.played{color:#2BBF6F;font-weight:700}
 
 /* Round column header */
 .rnd-hdr{
@@ -719,7 +720,7 @@ const ROUNDS = [
   { name:"Round of 32", date:"Jun 28 – Jul 3", matches:[
     {h:"Germany",     hf:"🇩🇪",a:"Paraguay",     af:"🇵🇾",ha:72.4,aa:27.6,w:"Germany",                  dt:"Jun 29",venue:"MetLife Stadium · New York"},
     {h:"France",      hf:"🇫🇷",a:"Sweden",        af:"🇸🇪",ha:70.5,aa:29.5,w:"France",                   dt:"Jun 30",venue:"Hard Rock Stadium · Miami"},
-    {h:"South Africa",hf:"🇿🇦",a:"Canada",       af:"🇨🇦",ha:44.4,aa:55.6,w:"Canada",       close:true,  dt:"Jun 28",venue:"BMO Field · Toronto",             note:"⚡ Canada 55.6%"},
+    {h:"South Africa",hf:"🇿🇦",a:"Canada",       af:"🇨🇦",ha:44.4,aa:55.6,w:"Canada",       played:true, dt:"Jun 28",venue:"Los Angeles Stadium · Inglewood",  note:"✔ FT 0–1 · Eustáquio 90+ · Canada into R16 (1st ever)"},
     {h:"Netherlands", hf:"🇳🇱",a:"Morocco",       af:"🇲🇦",ha:73.3,aa:26.7,w:"Netherlands",              dt:"Jun 29",venue:"AT&T Stadium · Dallas"},
     {h:"Portugal",    hf:"🇵🇹",a:"Croatia",       af:"🇭🇷",ha:61.1,aa:38.9,w:"Portugal",                 dt:"Jul 2", venue:"Lincoln Financial · Philadelphia",note:"Heavyweight R32 tie"},
     {h:"Spain",       hf:"🇪🇸",a:"Austria",       af:"🇦🇹",ha:72.4,aa:27.6,w:"Spain",                    dt:"Jul 2", venue:"Rose Bowl · Los Angeles"},
@@ -842,7 +843,7 @@ ROUNDS.forEach((round, ri) => {
         <span class="tr-pct">${m.aa.toFixed(1)}%</span>
         ${awayWon?`<span class="tr-dot"></span>`:''}
       </div>
-      ${m.note?`<div class="cnote${m.upset?' upset':m.close?' close':isBronzeM?' bronze-note-chip':isC?' champ':''}">${m.note}</div>`:''}
+      ${m.note?`<div class="cnote${m.played?' played':m.upset?' upset':m.close?' close':isBronzeM?' bronze-note-chip':isC?' champ':''}">${m.note}</div>`:''}
       ${m.dt?`<div class="card-venue">${m.dt} · ${m.venue}</div>`:''}
     `;
     col.appendChild(card);
