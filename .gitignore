@@ -1,0 +1,34 @@
+# OS
+.DS_Store
+**/.DS_Store
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.ipynb_checkpoints/
+.venv/
+venv/
+env/
+
+# Editor / local tooling scratch
+.claude/
+.idea/
+.vscode/
+
+# Raw source data — pulled via statsbombpy / FBref at runtime.
+# Not redistributed here (size + provider licensing). The *processed*
+# feature parquets in data/processed/ ARE committed so the model and
+# simulation reproduce without re-pulling.
+data/raw/
+
+# Transient
+downloaded_files/
+*.lock
+
+# Superseded experiment artifacts (only the canonical outputs are tracked)
+outputs/*_v2*.csv
+outputs/*_v3*.csv
+outputs/*_v4*.csv
+outputs/*_v5*.csv
+outputs/live_simulation_100k*.csv

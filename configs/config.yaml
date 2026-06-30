@@ -1,0 +1,86 @@
+paths:
+  raw_club_seasons: data/raw/club_seasons
+  raw_international: data/raw/international
+  raw_squads: data/raw/squads
+  raw_coach_history: data/raw/coach_history
+  processed: data/processed
+
+seasons:
+  club:
+    - "2021-2022"
+    - "2022-2023"
+    - "2023-2024"
+    - "2024-2025"
+    - "2025-2026"
+  start_year: 2021  # FBref format start
+
+leagues:
+  fbref_ids:
+    premier_league: 9
+    la_liga: 12
+    bundesliga: 20
+    serie_a: 11
+    ligue_1: 13
+    eredivisie: 23
+    primeira_liga: 32
+    brasileirao: 24
+    mls: 22
+
+statsbomb:
+  competitions:
+    world_cup:
+      competition_id: 43
+      seasons:
+        wc_2018: 3
+        wc_2022: 106
+    copa_america:
+      competition_id: 16
+      seasons:
+        copa_2024: 282
+    euro:
+      competition_id: 55
+      seasons:
+        euro_2020: 43
+        euro_2024: 282
+    qualifiers:
+      competition_id: 68  # UEFA WC qualifiers
+
+# Tournament type weights for feature engineering
+# Higher = more predictive of WC performance
+tournament_weights:
+  world_cup: 1.0
+  continental_tournament: 0.85   # Copa América, Euros
+  world_cup_qualifier: 0.70
+  nations_league: 0.55
+  continental_qualifier: 0.40
+  friendly: 0.15
+
+# Rolling form window weights (most recent first)
+form_weights:
+  match_1: 0.40
+  match_2: 0.25
+  match_3: 0.15
+  match_4: 0.12
+  match_5: 0.08
+
+# Minimum thresholds
+min_club_minutes_per_season: 450   # for per-90 stats to be valid
+min_intl_caps_for_form: 5          # need at least 5 caps for rolling form
+
+# Coach chemistry
+coach_familiarity:
+  lookback_seasons: 3              # how far back to check club-coach overlap
+  high_threshold: 0.6
+  medium_threshold: 0.3
+
+model:
+  n_estimators: 500
+  max_depth: 5
+  learning_rate: 0.05
+  subsample: 0.8
+  colsample_bytree: 0.8
+  random_state: 42
+
+simulation:
+  n_simulations: 100_000
+  random_seed: 42
