@@ -108,7 +108,9 @@ REMAINING_MATCHES: list[dict] = []
 # with `winner` carrying who advanced.
 COMPLETED_KNOCKOUT: list[dict] = [
     {"stage":"R32","home":"South Africa","away":"Canada",   "hg":0,"ag":1,"winner":"Canada",   "date":"2026-06-28"},
-    {"stage":"R32","home":"Germany",     "away":"Paraguay", "hg":1,"ag":1,"winner":"Paraguay", "date":"2026-06-29","note":"Paraguay won on penalties"},
+    {"stage":"R32","home":"Brazil",      "away":"Japan",    "hg":2,"ag":1,"winner":"Brazil",   "date":"2026-06-29"},
+    {"stage":"R32","home":"Germany",     "away":"Paraguay", "hg":1,"ag":1,"winner":"Paraguay", "date":"2026-06-29","note":"Paraguay won 4-3 on penalties"},
+    {"stage":"R32","home":"Netherlands", "away":"Morocco",  "hg":1,"ag":1,"winner":"Morocco",  "date":"2026-06-29","note":"Morocco won 3-2 on penalties"},
 ]
 
 # Actual WC2026 groups as officially drawn
