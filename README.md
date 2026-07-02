@@ -26,12 +26,15 @@ it survives.
 
 - **Most-likely bracket (chalk):** **Spain** champions, beating Argentina **68.5%** in the final;
   Spain edge France **59.1%** in the semis.
-- **Marginal title odds (500k sim):** **France 18.6%** · Argentina 16.0% · Spain 11.2% ·
-  Portugal 10.2% · England 9.8% · Brazil 8.8%.
+- **Marginal title odds (500k sim):** **France 19.4%** · Argentina 15.6% · Spain 11.9% ·
+  Brazil 11.3% · Portugal 9.0% · England 8.8%.
 - The chalk winner (Spain) is **not** the favourite in the marginal odds (France) — the gap
   between the *modal* path and the *marginal* distribution is the central story.
-- Completed knockouts are **locked** into the simulation: **Germany eliminated** by Paraguay on
-  penalties; **Canada** through for the first time.
+- Completed R32 results are **locked** into the simulation: **Germany** out to Paraguay (4–3 pens),
+  **Netherlands** out to Morocco (3–2 pens), Brazil 2–1 Japan, Canada 1–0 South Africa. Morocco
+  takes the Dutch slot; Brazil's form (z = +1.27) now carries it to the semis.
+
+_Snapshot: early Round of 32 (June 30, 2026). The model re-runs as results come in — the [live bracket](https://srotriyosengupta.github.io/wc2026-prediction/) always shows the current numbers._
 
 ![Title odds](article_charts/fig1_title_odds.png)
 
