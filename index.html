@@ -4,19 +4,19 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Srotriyo Sengupta's WC 2026 Bracket Prediction</title>
-<meta name="description" content="Game-by-game machine learning prediction for FIFA World Cup 2026 by Srotriyo Sengupta. Knockouts underway — Germany out to Paraguay and Netherlands out to Morocco, both on penalties. Spain beat Argentina 68.5% in the Final; France top the title odds (19.4%). Includes Golden Boot, Golden Ball, Golden Glove, Best Young Player predictions.">
+<meta name="description" content="Game-by-game machine learning prediction for FIFA World Cup 2026 by Srotriyo Sengupta. Knockouts underway — 14 of 16 Round-of-32 games played and every winner called correctly. Spain beat Argentina 66.5% in the Final; France top the title odds (25.6%). Includes Golden Boot, Golden Ball, Golden Glove, Best Young Player predictions.">
 <meta name="author" content="Srotriyo Sengupta">
 
 <!-- Open Graph -->
 <meta property="og:type"        content="article">
 <meta property="og:title"       content="Srotriyo Sengupta's WC 2026 Bracket Prediction — Spain are Champions">
-<meta property="og:description" content="Knockouts underway. Germany out to Paraguay and Netherlands out to Morocco, both on penalties. Spain beat Argentina 68.5% in the Final; Brazil's form carries them to the semis; France take bronze. Awards predictions included.">
+<meta property="og:description" content="Knockouts underway — 14 of 16 Round-of-32 games played and every winner called correctly. Spain beat Argentina 66.5% in the Final; France top the odds at 25.6%; Brazil reach the semis. Awards predictions included.">
 <meta property="og:site_name"   content="Srotriyo Sengupta · Data Analysis">
 
 <!-- Twitter Card -->
 <meta name="twitter:card"        content="summary_large_image">
 <meta name="twitter:title"       content="Srotriyo Sengupta's WC 2026 Bracket Prediction — Spain are Champions">
-<meta name="twitter:description" content="Knockouts underway. Germany out to Paraguay, Netherlands out to Morocco. Spain beat Argentina 68.5% in the Final; Brazil reach the semis; France take bronze. Golden Boot: Messi (6 goals). Golden Ball: Messi. Full bracket by Srotriyo Sengupta.">
+<meta name="twitter:description" content="Knockouts underway — 14 of 16 R32 games played, every winner called correctly. Spain beat Argentina 66.5% in the Final; France top the odds (25.6%); Brazil reach the semis. Golden Boot: Messi (6 goals). Full bracket by Srotriyo Sengupta.">
 
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -569,8 +569,8 @@ html{
 <div class="stories">
   <div class="story gold">
     <span class="story-icon">🏆</span>
-    <div class="story-title">Spain Win It — 68.5% Over Argentina in the Final</div>
-    <div class="story-body">The retrained model (now on 980 internationals, plus in-tournament form) makes <strong>Spain</strong> the single most-likely champion: through Portugal and Belgium, past <strong>France in the semifinal (59.1%)</strong>, then <strong>68.5% over Argentina</strong> in the Final. Tournament-best ELO (2171), three group clean sheets and Yamal's form carry the chalk path all the way.</div>
+    <div class="story-title">Spain Win It — 66.5% Over Argentina in the Final</div>
+    <div class="story-body">The model makes <strong>Spain</strong> the single most-likely champion: past Portugal and Belgium, then <strong>France in the semifinal (59.1%)</strong>, then <strong>66.5% over Argentina</strong> in the Final. Their 3–0 dismantling of Austria in the R32 (Oyarzabal 2, Porro), tournament-best ELO and Yamal's form carry the chalk path all the way.</div>
   </div>
   <div class="story gold">
     <span class="story-icon">💥</span>
@@ -590,12 +590,12 @@ html{
   <div class="story teal">
     <span class="story-icon">🇫🇷</span>
     <div class="story-title">France Top the Title Odds — but Exit in the Semis</div>
-    <div class="story-body">France were the group-stage juggernaut and <strong>top the Monte Carlo title odds at 19.4%</strong> — yet on the single most-likely path Spain's higher ELO edges them <strong>59.1%</strong> in the semifinal. They beat Brazil for bronze. The gap between "most likely to win the tournament" and "wins this exact bracket" is the whole story (see below).</div>
+    <div class="story-body">France opened with a ruthless 3–0 over Sweden (Mbappé 2) and <strong>top the Monte Carlo title odds at 25.6%</strong> — yet on the single most-likely path Spain's higher ELO edges them <strong>59.1%</strong> in the semifinal. They beat Brazil for bronze. The gap between "most likely to win the tournament" and "wins this exact bracket" is the whole story (see below).</div>
   </div>
   <div class="story">
     <span class="story-icon">📊</span>
     <div class="story-title">Modal vs Marginal — Why Spain Is Chalk but France Lead the Odds</div>
-    <div class="story-body">The bracket shows the <strong>modal</strong> path: advance the favourite in every single tie, and you get Spain as champion. The <strong>500k Monte Carlo</strong> instead integrates over every upset, giving <strong>marginal</strong> title odds: France 19.4% · Argentina 15.6% · Spain 11.9% · Brazil 11.3% · Portugal 9.0% · England 8.8%. France win more often across all worlds; Spain wins this one most-likely bracket. Both are true.</div>
+    <div class="story-body">The bracket shows the <strong>modal</strong> path: advance the favourite in every single tie, and you get Spain as champion. The <strong>500k Monte Carlo</strong> instead integrates over every upset, giving <strong>marginal</strong> title odds: France 25.6% · Spain 20.0% · Argentina 14.0% · England 8.4% · Brazil 8.2% · Portugal 4.3%. France win more often across all worlds; Spain wins this one most-likely bracket. Both are true.</div>
   </div>
 </div>
 
@@ -719,47 +719,47 @@ const ROUNDS = [
   // Probabilities = neutral-venue head-to-head from the seeded-ELO model (same engine as the 500k sim).
   { name:"Round of 32", date:"Jun 28 – Jul 3", matches:[
     {h:"Germany",     hf:"🇩🇪",a:"Paraguay",     af:"🇵🇾",ha:0.0,aa:100.0,w:"Paraguay",     played:true, dt:"Jun 29",venue:"Gillette Stadium · Foxborough",  note:"✔ FT 1–1 · Paraguay win 4–3 on pens · GERMANY OUT"},
-    {h:"France",      hf:"🇫🇷",a:"Sweden",        af:"🇸🇪",ha:74.0,aa:26.0,w:"France",                   dt:"Jun 30",venue:"MetLife Stadium · East Rutherford"},
+    {h:"France",      hf:"🇫🇷",a:"Sweden",        af:"🇸🇪",ha:100.0,aa:0.0,w:"France",        played:true, dt:"Jun 30",venue:"MetLife Stadium · East Rutherford", note:"✔ FT 3–0 · Mbappé 2, Barcola"},
     {h:"South Africa",hf:"🇿🇦",a:"Canada",       af:"🇨🇦",ha:0.0,aa:100.0,w:"Canada",       played:true, dt:"Jun 28",venue:"SoFi Stadium · Inglewood",  note:"✔ FT 0–1 · Eustáquio 90+2' · Canada into R16 (1st ever)"},
     {h:"Netherlands", hf:"🇳🇱",a:"Morocco",       af:"🇲🇦",ha:0.0,aa:100.0,w:"Morocco",      played:true, dt:"Jun 29",venue:"Estadio BBVA · Monterrey",   note:"⚡ FT 1–1 · Morocco win 3–2 on pens · NETHERLANDS OUT"},
-    {h:"Portugal",    hf:"🇵🇹",a:"Croatia",       af:"🇭🇷",ha:81.4,aa:18.6,w:"Portugal",                 dt:"Jul 2", venue:"BMO Field · Toronto",            note:"Heavyweight R32 tie"},
-    {h:"Spain",       hf:"🇪🇸",a:"Austria",       af:"🇦🇹",ha:64.1,aa:35.9,w:"Spain",                    dt:"Jul 2", venue:"SoFi Stadium · Inglewood"},
-    {h:"USA",         hf:"🇺🇸",a:"Bosnia",        af:"🇧🇦",ha:77.4,aa:22.6,w:"USA",                      dt:"Jul 1", venue:"Levi's Stadium · Santa Clara"},
-    {h:"Belgium",     hf:"🇧🇪",a:"Senegal",       af:"🇸🇳",ha:53.2,aa:46.8,w:"Belgium",      close:true,  dt:"Jul 1", venue:"Lumen Field · Seattle",          note:"Coin-flip — Belgium 53.2%"},
+    {h:"Portugal",    hf:"🇵🇹",a:"Croatia",       af:"🇭🇷",ha:100.0,aa:0.0,w:"Portugal",     played:true, dt:"Jul 2", venue:"BMO Field · Toronto",            note:"✔ FT 2–1 · Ronaldo (pen), Ramos 90+4'"},
+    {h:"Spain",       hf:"🇪🇸",a:"Austria",       af:"🇦🇹",ha:100.0,aa:0.0,w:"Spain",        played:true, dt:"Jul 2", venue:"SoFi Stadium · Inglewood",       note:"✔ FT 3–0 · Oyarzabal 2, Porro"},
+    {h:"USA",         hf:"🇺🇸",a:"Bosnia",        af:"🇧🇦",ha:100.0,aa:0.0,w:"USA",          played:true, dt:"Jul 1", venue:"Levi's Stadium · Santa Clara",   note:"✔ FT 2–0 · Balogun, Tillman"},
+    {h:"Belgium",     hf:"🇧🇪",a:"Senegal",       af:"🇸🇳",ha:100.0,aa:0.0,w:"Belgium",      played:true, dt:"Jul 1", venue:"Lumen Field · Seattle",          note:"✔ AET 3–2 · Tielemans 2, Lukaku"},
     {h:"Brazil",      hf:"🇧🇷",a:"Japan",         af:"🇯🇵",ha:100.0,aa:0.0,w:"Brazil",       played:true, dt:"Jun 29",venue:"NRG Stadium · Houston",         note:"✔ FT 2–1 · Casemiro, Martinelli · Brazil into R16"},
-    {h:"Ivory Coast", hf:"🇨🇮",a:"Norway",        af:"🇳🇴",ha:47.1,aa:52.9,w:"Norway",       close:true,  dt:"Jun 30",venue:"AT&T Stadium · Arlington",       note:"Coin-flip — Norway 52.9%"},
-    {h:"Mexico",      hf:"🇲🇽",a:"Ecuador",       af:"🇪🇨",ha:60.8,aa:39.2,w:"Mexico",                   dt:"Jun 30",venue:"Estadio Azteca · Mexico City"},
-    {h:"England",     hf:"🏴󠁧󠁢󠁥󠁮󠁧󠁿",a:"DR Congo",     af:"🇨🇩",ha:85.3,aa:14.7,w:"England",                  dt:"Jul 1", venue:"Mercedes-Benz Stadium · Atlanta"},
+    {h:"Ivory Coast", hf:"🇨🇮",a:"Norway",        af:"🇳🇴",ha:0.0,aa:100.0,w:"Norway",       played:true, dt:"Jun 30",venue:"AT&T Stadium · Arlington",       note:"✔ FT 1–2 · Haaland, Nusa"},
+    {h:"Mexico",      hf:"🇲🇽",a:"Ecuador",       af:"🇪🇨",ha:100.0,aa:0.0,w:"Mexico",       played:true, dt:"Jun 30",venue:"Estadio Azteca · Mexico City",  note:"✔ FT 2–0 · Quiñones, Jiménez"},
+    {h:"England",     hf:"🏴󠁧󠁢󠁥󠁮󠁧󠁿",a:"DR Congo",     af:"🇨🇩",ha:100.0,aa:0.0,w:"England",      played:true, dt:"Jul 1", venue:"Mercedes-Benz Stadium · Atlanta",note:"✔ FT 2–1 · Kane 2"},
     {h:"Argentina",   hf:"🇦🇷",a:"Cabo Verde",    af:"🇨🇻",ha:86.9,aa:13.1,w:"Argentina",               dt:"Jul 3", venue:"Hard Rock Stadium · Miami"},
-    {h:"Australia",   hf:"🇦🇺",a:"Egypt",         af:"🇪🇬",ha:32.0,aa:68.0,w:"Egypt",        upset:true,  dt:"Jul 3", venue:"AT&T Stadium · Arlington",       note:"⚡ Egypt upsets Australia"},
-    {h:"Switzerland", hf:"🇨🇭",a:"Algeria",       af:"🇩🇿",ha:79.4,aa:20.6,w:"Switzerland",              dt:"Jul 2", venue:"BC Place · Vancouver"},
+    {h:"Australia",   hf:"🇦🇺",a:"Egypt",         af:"🇪🇬",ha:0.0,aa:100.0,w:"Egypt",        played:true, upset:true, dt:"Jul 3", venue:"AT&T Stadium · Arlington",  note:"⚡ 1–1 · Egypt win 4–2 on pens · Australia OUT"},
+    {h:"Switzerland", hf:"🇨🇭",a:"Algeria",       af:"🇩🇿",ha:100.0,aa:0.0,w:"Switzerland",  played:true, dt:"Jul 2", venue:"BC Place · Vancouver",           note:"✔ FT 2–0 · Embolo, Ndoye"},
     {h:"Colombia",    hf:"🇨🇴",a:"Ghana",         af:"🇬🇭",ha:50.7,aa:49.3,w:"Colombia",     close:true,  dt:"Jul 3", venue:"Arrowhead Stadium · Kansas City", note:"Coin-flip — Colombia 50.7%"},
   ]},
   { name:"Round of 16", date:"Jul 4 – 7", matches:[
     {h:"Paraguay",    hf:"🇵🇾",a:"France",        af:"🇫🇷",ha:29.2,aa:70.8,w:"France",                   dt:"Jul 4", venue:"Lincoln Financial Field · Philadelphia"},
     {h:"Canada",      hf:"🇨🇦",a:"Morocco",       af:"🇲🇦",ha:25.1,aa:74.9,w:"Morocco",                  dt:"Jul 4", venue:"NRG Stadium · Houston"},
-    {h:"Portugal",    hf:"🇵🇹",a:"Spain",         af:"🇪🇸",ha:45.3,aa:54.7,w:"Spain",       close:true,   dt:"Jul 6", venue:"AT&T Stadium · Arlington",        note:"Iberian heavyweight tie"},
+    {h:"Portugal",    hf:"🇵🇹",a:"Spain",         af:"🇪🇸",ha:45.8,aa:54.2,w:"Spain",       close:true,   dt:"Jul 6", venue:"AT&T Stadium · Arlington",        note:"Iberian heavyweight tie"},
     {h:"USA",         hf:"🇺🇸",a:"Belgium",       af:"🇧🇪",ha:35.9,aa:64.1,w:"Belgium",                  dt:"Jul 6", venue:"Lumen Field · Seattle"},
-    {h:"Brazil",      hf:"🇧🇷",a:"Norway",        af:"🇳🇴",ha:75.2,aa:24.8,w:"Brazil",                   dt:"Jul 5", venue:"MetLife Stadium · East Rutherford"},
-    {h:"Mexico",      hf:"🇲🇽",a:"England",       af:"🏴󠁧󠁢󠁥󠁮󠁧󠁿",ha:65.2,aa:34.8,w:"Mexico",       upset:true,  dt:"Jul 5", venue:"Estadio Azteca · Mexico City",    note:"⚡ Host Mexico ousts England"},
+    {h:"Brazil",      hf:"🇧🇷",a:"Norway",        af:"🇳🇴",ha:56.4,aa:43.6,w:"Brazil",      close:true,   dt:"Jul 5", venue:"MetLife Stadium · East Rutherford", note:"Haaland's Norway push Brazil"},
+    {h:"Mexico",      hf:"🇲🇽",a:"England",       af:"🏴󠁧󠁢󠁥󠁮󠁧󠁿",ha:65.1,aa:34.9,w:"Mexico",       upset:true,  dt:"Jul 5", venue:"Estadio Azteca · Mexico City",    note:"⚡ Host Mexico ousts England"},
     {h:"Argentina",   hf:"🇦🇷",a:"Egypt",         af:"🇪🇬",ha:76.7,aa:23.3,w:"Argentina",               dt:"Jul 7", venue:"Mercedes-Benz Stadium · Atlanta"},
-    {h:"Switzerland", hf:"🇨🇭",a:"Colombia",      af:"🇨🇴",ha:73.0,aa:27.0,w:"Switzerland",              dt:"Jul 7", venue:"BC Place · Vancouver"},
+    {h:"Switzerland", hf:"🇨🇭",a:"Colombia",      af:"🇨🇴",ha:54.4,aa:45.6,w:"Switzerland", close:true,   dt:"Jul 7", venue:"BC Place · Vancouver",           note:"Coin-flip tie"},
   ]},
   { name:"Quarter-Finals", date:"Jul 9 – 11", matches:[
-    {h:"France",      hf:"🇫🇷",a:"Morocco",       af:"🇲🇦",ha:82.8,aa:17.2,w:"France",                   dt:"Jul 9", venue:"Gillette Stadium · Foxborough"},
-    {h:"Spain",       hf:"🇪🇸",a:"Belgium",       af:"🇧🇪",ha:75.2,aa:24.8,w:"Spain",                    dt:"Jul 10",venue:"SoFi Stadium · Inglewood"},
-    {h:"Brazil",      hf:"🇧🇷",a:"Mexico",        af:"🇲🇽",ha:79.7,aa:20.3,w:"Brazil",                   dt:"Jul 11",venue:"Hard Rock Stadium · Miami",       note:"Brazil end the host run"},
-    {h:"Argentina",   hf:"🇦🇷",a:"Switzerland",   af:"🇨🇭",ha:81.6,aa:18.5,w:"Argentina",                dt:"Jul 11",venue:"Arrowhead Stadium · Kansas City"},
+    {h:"France",      hf:"🇫🇷",a:"Morocco",       af:"🇲🇦",ha:82.0,aa:18.0,w:"France",                   dt:"Jul 9", venue:"Gillette Stadium · Foxborough"},
+    {h:"Spain",       hf:"🇪🇸",a:"Belgium",       af:"🇧🇪",ha:73.6,aa:26.4,w:"Spain",                    dt:"Jul 10",venue:"SoFi Stadium · Inglewood"},
+    {h:"Brazil",      hf:"🇧🇷",a:"Mexico",        af:"🇲🇽",ha:52.1,aa:47.9,w:"Brazil",      close:true,   dt:"Jul 11",venue:"Hard Rock Stadium · Miami",       note:"Brazil edge the hosts"},
+    {h:"Argentina",   hf:"🇦🇷",a:"Switzerland",   af:"🇨🇭",ha:82.3,aa:17.7,w:"Argentina",                dt:"Jul 11",venue:"Arrowhead Stadium · Kansas City"},
   ]},
   { name:"Semi-Finals", date:"Jul 14 – 15", matches:[
     {h:"France",      hf:"🇫🇷",a:"Spain",         af:"🇪🇸",ha:40.9,aa:59.1,w:"Spain",       close:true,   dt:"Jul 14",venue:"AT&T Stadium · Arlington",       note:"Spain ends France's run"},
     {h:"Brazil",      hf:"🇧🇷",a:"Argentina",     af:"🇦🇷",ha:43.1,aa:56.9,w:"Argentina",   close:true,  dt:"Jul 15",venue:"Mercedes-Benz Stadium · Atlanta", note:"Argentina end Brazil's run"},
   ]},
   { name:"3rd Place", date:"Jul 18", isBronze:true, matches:[
-    {h:"France",      hf:"🇫🇷",a:"Brazil",        af:"🇧🇷",ha:78.3,aa:21.7,w:"France",isBronze:true,   dt:"Jul 18",venue:"Hard Rock Stadium · Miami",     note:"Bronze Final"},
+    {h:"France",      hf:"🇫🇷",a:"Brazil",        af:"🇧🇷",ha:80.7,aa:19.3,w:"France",isBronze:true,   dt:"Jul 18",venue:"Hard Rock Stadium · Miami",     note:"Bronze Final"},
   ]},
   { name:"Final", date:"Jul 19", matches:[
-    {h:"Spain",       hf:"🇪🇸",a:"Argentina",     af:"🇦🇷",ha:68.5,aa:31.5,w:"Spain",isFinal:true,    dt:"Jul 19",venue:"MetLife Stadium · East Rutherford, NJ"},
+    {h:"Spain",       hf:"🇪🇸",a:"Argentina",     af:"🇦🇷",ha:66.5,aa:33.5,w:"Spain",isFinal:true,    dt:"Jul 19",venue:"MetLife Stadium · East Rutherford, NJ"},
   ]},
 ];
 
@@ -902,7 +902,7 @@ cw.innerHTML = `
     <span class="champ-label">Predicted Champion</span>
     <span class="champ-flag">🇪🇸</span>
     <div class="champ-name">Spain</div>
-    <span class="champ-prob">68.5% · Final vs Argentina</span>
+    <span class="champ-prob">66.5% · Final vs Argentina</span>
     <div class="champ-runner">
       <span class="champ-runner-label">Runner-up</span>
       <div>🇦🇷 <span class="champ-runner-name">Argentina</span></div>

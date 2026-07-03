@@ -43,9 +43,9 @@ _A real, modest edge: ~12% lower log-loss than the base rate, +11 pts accuracy o
 | **Knockout flag** | **7.2%** (was 0% — the dropped tournament matches gave it variance) |
 
 ## Title odds (corrected 980-match + in-tournament-form model, real knockout draw, 500k sim)
-_Re-run over the **actual confirmed bracket** with completed R32 results locked: Germany out to Paraguay (4–3 pens), Netherlands out to Morocco (3–2 pens), Brazil 2–1 Japan, Canada 1–0 South Africa._
-France 19.4 · Argentina 15.6 · Spain 11.9 · Brazil 11.3 · Portugal 9.0 · England 8.8 · Morocco 4.6 · Colombia 3.8 …
-- **Modal (chalk) bracket:** Spain champion over Argentina (68.5% Final); Spain beats France in the SF (59.1%); Brazil's form (z=+1.27) carries them to the semis before Argentina ends them; host Mexico ousts England in the R16.
+_Re-run with **14 of 16 R32 results locked** (all model-correct): Germany out to Paraguay & Netherlands out to Morocco on pens; France 3–0, Spain 3–0, Portugal 2–1, USA 2–0, England 2–1, Mexico 2–0, Switzerland 2–0, Belgium (aet), Norway, Egypt (pens). Argentina–Cabo Verde and Colombia–Ghana still to play._
+France 25.6 · Spain 20.0 · Argentina 14.0 · England 8.4 · Brazil 8.2 · Portugal 4.3 · Norway 3.4 · Morocco 2.8 …
+- **Modal (chalk) bracket:** Spain champion over Argentina (66.5% Final); Spain beats France in the SF (59.1%); Brazil edges Norway then the hosts to reach the semis before Argentina ends them; host Mexico ousts England in the R16.
 - **Marginal (Monte Carlo):** France remain the most-likely single winner across all simulated worlds despite Spain winning the single most-likely bracket.
 
 ## Figure manifest

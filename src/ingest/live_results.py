@@ -111,6 +111,16 @@ COMPLETED_KNOCKOUT: list[dict] = [
     {"stage":"R32","home":"Brazil",      "away":"Japan",    "hg":2,"ag":1,"winner":"Brazil",   "date":"2026-06-29"},
     {"stage":"R32","home":"Germany",     "away":"Paraguay", "hg":1,"ag":1,"winner":"Paraguay", "date":"2026-06-29","note":"Paraguay won 4-3 on penalties"},
     {"stage":"R32","home":"Netherlands", "away":"Morocco",  "hg":1,"ag":1,"winner":"Morocco",  "date":"2026-06-29","note":"Morocco won 3-2 on penalties"},
+    {"stage":"R32","home":"Ivory Coast", "away":"Norway",   "hg":1,"ag":2,"winner":"Norway",   "date":"2026-06-30"},
+    {"stage":"R32","home":"France",      "away":"Sweden",   "hg":3,"ag":0,"winner":"France",   "date":"2026-06-30"},
+    {"stage":"R32","home":"Mexico",      "away":"Ecuador",  "hg":2,"ag":0,"winner":"Mexico",   "date":"2026-06-30"},
+    {"stage":"R32","home":"England",     "away":"DR Congo", "hg":2,"ag":1,"winner":"England",  "date":"2026-07-01"},
+    {"stage":"R32","home":"Belgium",     "away":"Senegal",  "hg":3,"ag":2,"winner":"Belgium",  "date":"2026-07-01","note":"after extra time"},
+    {"stage":"R32","home":"USA",         "away":"Bosnia and Herzegovina","hg":2,"ag":0,"winner":"USA","date":"2026-07-01"},
+    {"stage":"R32","home":"Spain",       "away":"Austria",  "hg":3,"ag":0,"winner":"Spain",    "date":"2026-07-02"},
+    {"stage":"R32","home":"Portugal",    "away":"Croatia",  "hg":2,"ag":1,"winner":"Portugal", "date":"2026-07-02"},
+    {"stage":"R32","home":"Switzerland", "away":"Algeria",  "hg":2,"ag":0,"winner":"Switzerland","date":"2026-07-02"},
+    {"stage":"R32","home":"Australia",   "away":"Egypt",    "hg":1,"ag":1,"winner":"Egypt",    "date":"2026-07-03","note":"Egypt won 4-2 on penalties"},
 ]
 
 # Actual WC2026 groups as officially drawn
