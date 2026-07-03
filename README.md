@@ -30,10 +30,11 @@ it survives.
   England 8.4% · Brazil 8.2% · Portugal 4.3%.
 - The chalk winner (Spain) is **not** the favourite in the marginal odds (France) — the gap
   between the *modal* path and the *marginal* distribution is the central story.
-- **14 of 16 Round-of-32 games are played and the model called every winner correctly**
-  (Germany & Netherlands both out on penalties; France, Spain, Portugal, England, Mexico,
-  USA, Switzerland, Belgium, Norway, Egypt all as predicted). Completed results are locked
-  into the simulation; only Argentina–Cabo Verde and Colombia–Ghana remain to play.
+- **14 of 16 Round-of-32 games are played; the model called 12 of them correctly.** The only
+  two misses were penalty-shootout upsets — Paraguay over Germany and Morocco over the
+  Netherlands (both were level after extra time). France, Spain, Portugal, England, Mexico,
+  USA, Switzerland, Belgium, Norway and Egypt all went as predicted. Completed results are
+  locked into the simulation; only Argentina–Cabo Verde and Colombia–Ghana remain to play.
 
 ![Title odds](article_charts/fig1_title_odds.png)
 
