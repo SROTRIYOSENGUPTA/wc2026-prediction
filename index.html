@@ -182,6 +182,10 @@ html{
   font-size:8.5px;color:var(--muted);letter-spacing:.04em;
   padding:0 8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis
 }
+.card-venue.venue-wrap{
+  height:auto;white-space:normal;overflow:visible;text-overflow:clip;
+  line-height:1.3;padding-top:3px;padding-bottom:3px
+}
 .cnote{
   position:absolute;bottom:-18px;left:0;right:0;
   text-align:center;font-size:9px;color:var(--muted);
@@ -759,7 +763,7 @@ const ROUNDS = [
     {h:"France",      hf:"🇫🇷",a:"Brazil",        af:"🇧🇷",ha:80.7,aa:19.3,w:"France",isBronze:true,   dt:"Jul 18",venue:"Hard Rock Stadium · Miami",     note:"Bronze Final"},
   ]},
   { name:"Final", date:"Jul 19", matches:[
-    {h:"Spain",       hf:"🇪🇸",a:"Argentina",     af:"🇦🇷",ha:66.5,aa:33.5,w:"Spain",isFinal:true,    dt:"Jul 19",venue:"MetLife Stadium · East Rutherford"},
+    {h:"Spain",       hf:"🇪🇸",a:"Argentina",     af:"🇦🇷",ha:66.5,aa:33.5,w:"Spain",isFinal:true,    dt:"Jul 19",venue:"MetLife Stadium · East Rutherford, NJ"},
   ]},
 ];
 
@@ -844,7 +848,7 @@ ROUNDS.forEach((round, ri) => {
         ${awayWon?`<span class="tr-dot"></span>`:''}
       </div>
       ${m.note?`<div class="cnote${m.played?' played':m.upset?' upset':m.close?' close':isBronzeM?' bronze-note-chip':isC?' champ':''}">${m.note}</div>`:''}
-      ${m.dt?`<div class="card-venue">${m.dt} · ${m.venue}</div>`:''}
+      ${m.dt?`<div class="card-venue${isFinal?' venue-wrap':''}">${m.dt} · ${m.venue}</div>`:''}
     `;
     col.appendChild(card);
 
