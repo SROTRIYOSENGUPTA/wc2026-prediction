@@ -41,9 +41,20 @@ for i, a in enumerate(teams):
         ph, pd_, pa = pc.get(a, b)
         padv[i, j] = ph + pd_ / 2.0
 
+# Lock matrix: lock[i,j] = winner index if that matchup is a completed (locked)
+# result, else -1. Applied at EVERY round so R16/QF/SF locks are honored too.
+lock = np.full((32, 32), -1, dtype=np.int32)
+for pair, w in ko_winner.items():
+    a, b = tuple(pair)
+    if a in idx and b in idx and w in idx:
+        lock[idx[a], idx[b]] = idx[w]
+        lock[idx[b], idx[a]] = idx[w]
+
 def resolve(a_arr, b_arr):
     p = padv[a_arr, b_arr]
-    return np.where(np.random.random(len(a_arr)) < p, a_arr, b_arr).astype(np.int32)
+    out = np.where(np.random.random(len(a_arr)) < p, a_arr, b_arr).astype(np.int32)
+    lk = lock[a_arr, b_arr]                      # forced winner per sim, or -1
+    return np.where(lk >= 0, lk, out).astype(np.int32)
 
 # R32 (fixed pairs; locked where completed)
 r32w = []
