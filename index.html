@@ -195,6 +195,9 @@ html{
 .cnote.close{color:var(--cl)}
 .cnote.champ{color:var(--am)}
 .cnote.played{color:#2BBF6F;font-weight:700}
+.cnote.coinflip span{display:inline-block;color:#F0A520;background:rgba(240,165,32,.12);
+  border:1px solid rgba(240,165,32,.38);border-radius:9px;padding:1px 8px;
+  font-weight:700;font-size:8px;letter-spacing:.09em}
 
 /* Round column header */
 .rnd-hdr{
@@ -708,6 +711,7 @@ const HDR_H   = 44;
 const COL_W   = 204;
 const CONN_W  = 44;
 const CHAMPION = "Spain";
+const COINFLIP_MAX = 55;   // unplayed ties with favourite <= this % are labelled a coin flip
 
 function slotH(ri)  { return SLOT * Math.pow(2, ri); }
 function cardTop(ri, mi, isFinal, isBronzeMatch) {
@@ -819,6 +823,8 @@ ROUNDS.forEach((round, ri) => {
     const homeWon = m.w === m.h;
     const awayWon = m.w === m.a;
     const isC = m.w === CHAMPION;
+    // Coin flip: an unplayed tie where the favourite's advance prob is <= 55% (margin <= 10 pts)
+    const coin = !m.played && Math.max(m.ha, m.aa) <= COINFLIP_MAX;
     const cc  = isBronzeM ? "bronze" : (isC ? "am" : "cy");
     const rowH = isFinal ? Math.floor((fh - BAR_H) / 2) : ROW_H;
 
@@ -847,7 +853,8 @@ ROUNDS.forEach((round, ri) => {
         <span class="tr-pct">${m.aa.toFixed(1)}%</span>
         ${awayWon?`<span class="tr-dot"></span>`:''}
       </div>
-      ${m.note?`<div class="cnote${m.played?' played':m.upset?' upset':m.close?' close':isBronzeM?' bronze-note-chip':isC?' champ':''}">${m.note}</div>`:''}
+      ${coin?`<div class="cnote coinflip"><span>⟲ COIN FLIP</span></div>`
+        :(m.note?`<div class="cnote${m.played?' played':m.upset?' upset':m.close?' close':isBronzeM?' bronze-note-chip':isC?' champ':''}">${m.note}</div>`:'')}
       ${m.dt?`<div class="card-venue${isFinal?' venue-wrap':''}">${m.dt} · ${m.venue}</div>`:''}
     `;
     col.appendChild(card);
