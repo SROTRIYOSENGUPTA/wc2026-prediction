@@ -21,32 +21,33 @@ Training set is now the full **980 internationals**. Snapshot: group stage compl
 ## Honest performance (out-of-fold, 5-fold CV) — use these, not 0.44
 | Metric | Model | Baseline |
 |---|--:|--:|
-| Log-loss (calibrated, OOF) | **0.942** | base-rate 1.065 |
-| Log-loss (raw, OOF) | 1.032 | uniform 1.099 |
-| Top-pick accuracy (OOF) | **54.7%** | majority-class 43.7% |
+| Log-loss (calibrated, OOF) | **0.943** | base-rate 1.065 |
+| Log-loss (raw, OOF) | 1.036 | uniform 1.099 |
+| Top-pick accuracy (OOF) | **55.2%** | majority-class 43.7% |
 | In-sample calibrated (do **not** quote as performance) | 0.78 | — |
 
-_A real, modest edge: ~12% lower log-loss than the base rate, +11 pts accuracy over always-picking-the-favourite. The earlier "0.44" was in-sample, post-calibration on the buggy 666-row fit — optimistic and not reproducible._
+_A real, modest edge: ~11% lower log-loss than the base rate, +11 pts accuracy over always-picking-the-favourite. Model **retrained with median imputation** for missing squad features (was zero-fill, which systematically underrated ~14 non-UEFA teams). Train and inference now use the same imputed features; OOF performance held (0.943, 55.2%)._
 
-## Feature importance (corrected 980-match model)
+## Feature importance (retrained, median-imputed 980-match model)
 | Feature | Importance |
 |---|--:|
-| Net xG | 12.8% |
+| Ballon d'Or talent | 12.6% |
 | ELO rating | 12.2% |
-| Club prestige | 11.4% |
-| Ballon d'Or talent | 10.9% |
-| Intl. experience | 10.5% |
-| Club chemistry | 9.7% |
-| Squad disruption | 8.6% |
-| Club avg xG | 8.4% |
-| Attack quality | 8.2% |
-| **Knockout flag** | **7.2%** (was 0% — the dropped tournament matches gave it variance) |
+| Club prestige | 11.5% |
+| Intl. experience | 10.2% |
+| Net xG | 10.0% |
+| Club chemistry | 9.9% |
+| Squad disruption | 9.0% |
+| Attack quality | 8.8% |
+| Club avg xG | 8.8% |
+| **Knockout flag** | **7.1%** |
 
-## Title odds (corrected 980-match + in-tournament-form model, real knockout draw, 500k sim)
-_Re-run with **14 of 16 R32 results locked** (model called 12 of 14; the two misses were penalty-shootout upsets — Paraguay over Germany, Morocco over Netherlands). Correct calls: France 3–0, Spain 3–0, Portugal 2–1, USA 2–0, England 2–1, Mexico 2–0, Switzerland 2–0, Belgium (aet), Norway, Egypt (pens), Brazil, Canada. Argentina–Cabo Verde and Colombia–Ghana still to play._
-France 25.6 · Spain 20.0 · Argentina 14.0 · England 8.4 · Brazil 8.2 · Portugal 4.3 · Norway 3.4 · Morocco 2.8 …
-- **Modal (chalk) bracket:** Spain champion over Argentina (66.5% Final); Spain beats France in the SF (59.1%); Brazil edges Norway then the hosts to reach the semis before Argentina ends them; host Mexico ousts England in the R16.
-- **Marginal (Monte Carlo):** France remain the most-likely single winner across all simulated worlds despite Spain winning the single most-likely bracket.
+## Title odds (retrained + median-imputed model, real knockout draw, 500k sim)
+_All 16 R32 results + the Norway 2–1 upset of Brazil (R16) locked. Missing squad features imputed with the cross-team median (fixes a UEFA-favouring bias from zero-fill)._
+France 31.2 · Argentina 18.2 · Spain 17.1 · Norway 12.9 · England 5.4 · Portugal 3.6 …
+- **Modal (chalk) bracket:** Spain champion over Argentina (73.3% Final); Spain edges France in the SF (57.1%); Norway (who upset Brazil) run to the semis before Argentina ends them.
+- **Marginal (Monte Carlo):** France are the clear most-likely single winner (31%) across all simulated worlds, despite Spain winning the single most-likely bracket — a wide modal-vs-marginal gap.
+- **Coin flips** (unplayed ties, favourite ≤55%): Portugal–Spain and Switzerland–Colombia.
 
 ## Figure manifest
 - fig1 title odds · fig2 progression — **corrected (980 + form, real-bracket 500k sim)**
