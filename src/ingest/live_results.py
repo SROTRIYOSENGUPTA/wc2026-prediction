@@ -125,6 +125,7 @@ COMPLETED_KNOCKOUT: list[dict] = [
     {"stage":"R32","home":"Colombia",    "away":"Ghana",    "hg":1,"ag":0,"winner":"Colombia", "date":"2026-07-03"},
     # Round of 16 (Jul 4–7) — add each here once FINAL, verified from a reliable score.
     {"stage":"R16","home":"Brazil",      "away":"Norway",   "hg":1,"ag":2,"winner":"Norway",   "date":"2026-07-05","note":"Norway upset Brazil"},
+    {"stage":"R16","home":"Mexico",      "away":"England",  "hg":2,"ag":3,"winner":"England",  "date":"2026-07-05","note":"England won 3-2 despite a red card"},
 ]
 
 # Actual WC2026 groups as officially drawn

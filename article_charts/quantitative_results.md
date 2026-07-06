@@ -43,11 +43,11 @@ _A real, modest edge: ~11% lower log-loss than the base rate, +11 pts accuracy o
 | **Knockout flag** | **7.1%** |
 
 ## Title odds (retrained + median-imputed model, real knockout draw, 500k sim)
-_All 16 R32 results + the Norway 2–1 upset of Brazil (R16) locked. Missing squad features imputed with the cross-team median (fixes a UEFA-favouring bias from zero-fill)._
-France 31.2 · Argentina 18.2 · Spain 17.1 · Norway 12.9 · England 5.4 · Portugal 3.6 …
-- **Modal (chalk) bracket:** Spain champion over Argentina (73.3% Final); Spain edges France in the SF (57.1%); Norway (who upset Brazil) run to the semis before Argentina ends them.
+_All 16 R32 + three R16 results locked (Norway 2–1 Brazil; England 2–3 win over Mexico with a red card). Deterministic bracket now seeds the same pre-tournament ELO the sim uses, so the two agree. Missing squad features imputed with the cross-team median (fixes a UEFA-favouring bias from zero-fill)._
+France 31.2 · Argentina 17.8 · Spain 17.6 · England 10.5 · Norway 9.1 · Portugal 4.2 …
+- **Modal (chalk) bracket:** Spain champion over Argentina (69.2% Final); Spain edges France in the SF (56.5%); Norway (who upset Brazil, then England) run to the semis before Argentina ends them.
 - **Marginal (Monte Carlo):** France are the clear most-likely single winner (31%) across all simulated worlds, despite Spain winning the single most-likely bracket — a wide modal-vs-marginal gap.
-- **Coin flips** (unplayed ties, favourite ≤55%): Portugal–Spain and Switzerland–Colombia.
+- **Coin flips** (unplayed ties, favourite ≤55%): Switzerland–Colombia (R16) and Norway–England (QF).
 
 ## Figure manifest
 - fig1 title odds · fig2 progression — **corrected (980 + form, real-bracket 500k sim)**

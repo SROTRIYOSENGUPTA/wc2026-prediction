@@ -70,7 +70,9 @@ def update_elo(ratings: dict, home: str, away: str, hg: int, ag: int) -> dict:
     r[away] = rb + K * ((1 - s) - (1 - ea))
     return r
 
-elo_live = dict(elo_base)
+# Seed with the pre-tournament ELO priors (worldcupelo.com) for 2026 teams — same
+# basis the 500k simulation uses — so the deterministic bracket and the sim agree.
+elo_live = {**elo_base, **WC2026_SEEDED_ELO}
 for m in COMPLETED_MATCHES:
     elo_live = update_elo(elo_live, m["home"], m["away"], m["hg"], m["ag"])
 # Apply completed knockout results to ELO, and build a winner-lookup that locks
