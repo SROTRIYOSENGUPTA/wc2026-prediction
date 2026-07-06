@@ -597,12 +597,12 @@ html{
   <div class="story teal">
     <span class="story-icon">🇫🇷</span>
     <div class="story-title">France Top the Title Odds — but Exit in the Semis</div>
-    <div class="story-body">France opened with a ruthless 3–0 over Sweden (Mbappé 2) and <strong>top the Monte Carlo title odds at 31.2%</strong> — yet on the single most-likely path Spain's higher ELO edges them <strong>59.1%</strong> in the semifinal. They beat Norway for bronze. The gap between "most likely to win the tournament" and "wins this exact bracket" is the whole story (see below).</div>
+    <div class="story-body">France opened with a ruthless 3–0 over Sweden (Mbappé 2) and <strong>top the Monte Carlo title odds at 38.2%</strong> — yet on the single most-likely path Spain's higher ELO edges them <strong>59.1%</strong> in the semifinal. They beat Norway for bronze. The gap between "most likely to win the tournament" and "wins this exact bracket" is the whole story (see below).</div>
   </div>
   <div class="story">
     <span class="story-icon">📊</span>
     <div class="story-title">Modal vs Marginal — Why Spain Is Chalk but France Lead the Odds</div>
-    <div class="story-body">The bracket shows the <strong>modal</strong> path: advance the favourite in every single tie, and you get Spain as champion. The <strong>500k Monte Carlo</strong> instead integrates over every upset, giving <strong>marginal</strong> title odds: France 31.2% · Argentina 17.8% · Spain 17.6% · England 10.5% · Norway 9.1% · Portugal 4.2%. France win more often across all worlds; Spain wins this one most-likely bracket. Both are true.</div>
+    <div class="story-body">The bracket shows the <strong>modal</strong> path: advance the favourite in every single tie, and you get Spain as champion. The <strong>500k Monte Carlo</strong> instead integrates over every upset, giving <strong>marginal</strong> title odds: France 38.2% · Argentina 19.1% · Spain 13.3% · England 9.2% · Norway 8.4% · Portugal 4.1%. France win more often across all worlds; Spain wins this one most-likely bracket. Both are true.</div>
   </div>
 </div>
 
@@ -726,10 +726,10 @@ const ROUNDS = [
   // ACTUAL confirmed R32 bracket (FotMob) — group stage COMPLETE Jun 27.
   // Probabilities = neutral-venue head-to-head from the seeded-ELO model (same engine as the 500k sim).
   { name:"Round of 32", date:"Jun 28 – Jul 3", matches:[
-    {h:"Germany",     hf:"🇩🇪",a:"Paraguay",     af:"🇵🇾",ha:0.0,aa:100.0,w:"Paraguay",     played:true, dt:"Jun 29",venue:"Gillette Stadium · Foxborough",  note:"✔ FT 1–1 · Paraguay win 4–3 on pens · GERMANY OUT"},
+    {h:"Germany",     hf:"🇩🇪",a:"Paraguay",     af:"🇵🇾",ha:0.0,aa:100.0,w:"Paraguay",     played:true, dt:"Jun 29",venue:"Gillette Stadium · Foxborough",  note:"⚡ Paraguay 4–3 pens · GERMANY OUT"},
     {h:"France",      hf:"🇫🇷",a:"Sweden",        af:"🇸🇪",ha:100.0,aa:0.0,w:"France",        played:true, dt:"Jun 30",venue:"MetLife Stadium · East Rutherford", note:"✔ FT 3–0 · Mbappé 2, Barcola"},
     {h:"South Africa",hf:"🇿🇦",a:"Canada",       af:"🇨🇦",ha:0.0,aa:100.0,w:"Canada",       played:true, dt:"Jun 28",venue:"SoFi Stadium · Inglewood",  note:"✔ FT 0–1 · Eustáquio 90+2' · Canada into R16 (1st ever)"},
-    {h:"Netherlands", hf:"🇳🇱",a:"Morocco",       af:"🇲🇦",ha:0.0,aa:100.0,w:"Morocco",      played:true, dt:"Jun 29",venue:"Estadio BBVA · Monterrey",   note:"⚡ FT 1–1 · Morocco win 3–2 on pens · NETHERLANDS OUT"},
+    {h:"Netherlands", hf:"🇳🇱",a:"Morocco",       af:"🇲🇦",ha:0.0,aa:100.0,w:"Morocco",      played:true, dt:"Jun 29",venue:"Estadio BBVA · Monterrey",   note:"⚡ Morocco 3–2 pens · DUTCH OUT"},
     {h:"Portugal",    hf:"🇵🇹",a:"Croatia",       af:"🇭🇷",ha:100.0,aa:0.0,w:"Portugal",     played:true, dt:"Jul 2", venue:"BMO Field · Toronto",            note:"✔ FT 2–1 · Ronaldo (pen), Ramos 90+4'"},
     {h:"Spain",       hf:"🇪🇸",a:"Austria",       af:"🇦🇹",ha:100.0,aa:0.0,w:"Spain",        played:true, dt:"Jul 2", venue:"SoFi Stadium · Inglewood",       note:"✔ FT 3–0 · Oyarzabal 2, Porro"},
     {h:"USA",         hf:"🇺🇸",a:"Bosnia",        af:"🇧🇦",ha:100.0,aa:0.0,w:"USA",          played:true, dt:"Jul 1", venue:"Levi's Stadium · Santa Clara",   note:"✔ FT 2–0 · Balogun, Tillman"},
@@ -744,12 +744,12 @@ const ROUNDS = [
     {h:"Colombia",    hf:"🇨🇴",a:"Ghana",         af:"🇬🇭",ha:100.0,aa:0.0,w:"Colombia",     played:true, dt:"Jul 3", venue:"Arrowhead Stadium · Kansas City", note:"✔ FT 1–0 · Colombia edge Ghana"},
   ]},
   { name:"Round of 16", date:"Jul 4 – 7", matches:[
-    {h:"Paraguay",    hf:"🇵🇾",a:"France",        af:"🇫🇷",ha:18.8,aa:81.2,w:"France",                   dt:"Jul 4", venue:"Lincoln Financial Field · Philadelphia"},
+    {h:"Paraguay",    hf:"🇵🇾",a:"France",        af:"🇫🇷",ha:0.0,aa:100.0,w:"France",     played:true, dt:"Jul 4", venue:"Lincoln Financial Field · Philadelphia", note:"✔ France through to the QF"},
     {h:"Canada",      hf:"🇨🇦",a:"Morocco",       af:"🇲🇦",ha:22.7,aa:77.3,w:"Morocco",                  dt:"Jul 4", venue:"NRG Stadium · Houston"},
     {h:"Portugal",    hf:"🇵🇹",a:"Spain",         af:"🇪🇸",ha:37.4,aa:62.6,w:"Spain",                   dt:"Jul 6", venue:"AT&T Stadium · Arlington",        note:"Iberian heavyweight tie"},
     {h:"USA",         hf:"🇺🇸",a:"Belgium",       af:"🇧🇪",ha:31.7,aa:68.3,w:"Belgium",                  dt:"Jul 6", venue:"Lumen Field · Seattle"},
     {h:"Brazil",      hf:"🇧🇷",a:"Norway",        af:"🇳🇴",ha:0.0,aa:100.0,w:"Norway",      played:true, upset:true, dt:"Jul 5", venue:"MetLife Stadium · East Rutherford", note:"⚡ FT 2–1 · NORWAY STUN BRAZIL"},
-    {h:"Mexico",      hf:"🇲🇽",a:"England",       af:"🏴󠁧󠁢󠁥󠁮󠁧󠁿",ha:0.0,aa:100.0,w:"England",    played:true, dt:"Jul 5", venue:"Estadio Azteca · Mexico City", note:"⚡ FT 2–3 · England through despite a red card"},
+    {h:"Mexico",      hf:"🇲🇽",a:"England",       af:"🏴󠁧󠁢󠁥󠁮󠁧󠁿",ha:0.0,aa:100.0,w:"England",    played:true, dt:"Jul 5", venue:"Estadio Azteca · Mexico City", note:"⚡ England through 3–2, 10 men"},
     {h:"Argentina",   hf:"🇦🇷",a:"Egypt",         af:"🇪🇬",ha:75.4,aa:24.6,w:"Argentina",               dt:"Jul 7", venue:"Mercedes-Benz Stadium · Atlanta"},
     {h:"Switzerland", hf:"🇨🇭",a:"Colombia",      af:"🇨🇴",ha:52.8,aa:47.2,w:"Switzerland",              dt:"Jul 7", venue:"BC Place · Vancouver"},
   ]},
