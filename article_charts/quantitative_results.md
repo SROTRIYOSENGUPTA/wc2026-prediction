@@ -45,11 +45,11 @@ _Ballon d'Or squad score is now a geometric-decay weighted sum over the whole sq
 | **Knockout flag** | **7.1%** |
 
 ## Title odds (retrained + median-imputed model, real knockout draw, 500k sim)
-_All 16 R32, all 8 R16, and the first two QFs locked (France 2–0 Morocco, Spain 2–1 Belgium). Six teams remain. Deterministic bracket now seeds the same pre-tournament ELO the sim uses, so the two agree. Missing squad features imputed with the cross-team median (fixes a UEFA-favouring bias from zero-fill)._
-France 38.6 · Spain 35.5 · Argentina 16.3 · England 5.9 · Norway 3.5 · Switzerland 0.2
-- **Modal (chalk) bracket:** Spain champion over Argentina (68.3% Final); Spain edges France in the SF (56.5%). Both are locked into that semifinal, so it effectively decides the title.
-- **Marginal (Monte Carlo):** France back on top (38.6%) after adding an individual hot-hand boost (Mbappé leads the Golden Boot 8+2); Spain 35.5% remains the chalk champion. Modal-vs-marginal gap reopened.
-- **Coin flip** (unplayed tie, favourite ≤55%): the France–Spain semifinal (Spain 52.2%).
+_All 16 R32, all 8 R16, and three QFs locked (France 2–0 Morocco, Spain 2–1 Belgium, England 2–1 Norway). Five teams remain; Argentina–Switzerland is the last QF. Deterministic bracket now seeds the same pre-tournament ELO the sim uses, so the two agree. Missing squad features imputed with the cross-team median (fixes a UEFA-favouring bias from zero-fill)._
+France 37.3 · Spain 35.6 · Argentina 15.5 · England 11.4 · Switzerland 0.2
+- **Modal (chalk) bracket:** Spain champion over Argentina (68.3% Final); Spain edges France in the SF (52.2%). Both are locked into that semifinal, so it effectively decides the title.
+- **Marginal (Monte Carlo):** France on top (37.3%) with the individual hot-hand boost (Mbappé leads the Golden Boot 8+2); Spain 35.6% remains the chalk champion. Modal-vs-marginal gap reopened.
+- **Coin flips** (unplayed, favourite ≤55%): BOTH semifinals — France–Spain (Spain 52.2%) and England–Argentina (Argentina 50.9%).
 - **Individual hot-hand:** ±5% post-prediction boost toward the team with the hotter in-tournament scorer (goals + ½·assists) — France (Mbappé 9.0), Argentina (Messi 8.0), Norway (Haaland 7.0) benefit.
 
 ## Figure manifest

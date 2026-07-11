@@ -135,6 +135,7 @@ COMPLETED_KNOCKOUT: list[dict] = [
     # Quarter-finals (Jul 9-11)
     {"stage":"QF","home":"France",       "away":"Morocco",  "hg":2,"ag":0,"winner":"France",   "date":"2026-07-09"},
     {"stage":"QF","home":"Spain",        "away":"Belgium",  "hg":2,"ag":1,"winner":"Spain",    "date":"2026-07-10"},
+    {"stage":"QF","home":"Norway",       "away":"England",  "hg":1,"ag":2,"winner":"England",  "date":"2026-07-11","note":"England into the semis"},
 ]
 
 # ---------------------------------------------------------------------------

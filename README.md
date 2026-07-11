@@ -25,9 +25,9 @@ it survives.
 ### Current headline (quarter-finals underway)
 
 - **Most-likely bracket (chalk):** **Spain** champions, beating Argentina **68.3%** in the final.
-- **Marginal title odds (500k sim):** **France 38.6%** · Spain 35.5% · Argentina 16.3% · England 5.9% · Norway 3.5% · Switzerland 0.2%.
+- **Marginal title odds (500k sim):** **France 37.3%** · Spain 35.6% · Argentina 15.5% · England 11.4% · Switzerland 0.2%.
 - France lead the odds (Mbappé's Golden Boot charge) while Spain wins the single most-likely bracket — the France–Spain **semifinal coin flip** decides it.
-- **26 of 28 knockout games played and locked**; six teams remain. The model called the vast majority correctly (misses were penalty-shootout upsets).
+- **27 of 28 pre-final knockout games played and locked**; five teams remain and BOTH semifinals are coin flips (Spain 52.2% v France; Argentina 50.9% v England).
 
 ![Title odds](article_charts/fig1_title_odds.png)
 
