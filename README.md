@@ -22,19 +22,12 @@ a result from each match, advance the winner through the real confirmed bracket,
 final — then repeat 500,000 times. A team's title odds are simply the share of those tournaments
 it survives.
 
-### Current headline (group stage complete, knockouts underway)
+### Current headline (quarter-finals underway)
 
-- **Most-likely bracket (chalk):** **Spain** champions, beating Argentina **66.5%** in the final;
-  Spain edge France **59.1%** in the semis.
-- **Marginal title odds (500k sim):** **France 25.6%** · Spain 20.0% · Argentina 14.0% ·
-  England 8.4% · Brazil 8.2% · Portugal 4.3%.
-- The chalk winner (Spain) is **not** the favourite in the marginal odds (France) — the gap
-  between the *modal* path and the *marginal* distribution is the central story.
-- **14 of 16 Round-of-32 games are played; the model called 12 of them correctly.** The only
-  two misses were penalty-shootout upsets — Paraguay over Germany and Morocco over the
-  Netherlands (both were level after extra time). France, Spain, Portugal, England, Mexico,
-  USA, Switzerland, Belgium, Norway and Egypt all went as predicted. Completed results are
-  locked into the simulation; only Argentina–Cabo Verde and Colombia–Ghana remain to play.
+- **Most-likely bracket (chalk):** **Spain** champions, beating Argentina **68.3%** in the final.
+- **Marginal title odds (500k sim):** **France 38.6%** · Spain 35.5% · Argentina 16.3% · England 5.9% · Norway 3.5% · Switzerland 0.2%.
+- France lead the odds (Mbappé's Golden Boot charge) while Spain wins the single most-likely bracket — the France–Spain **semifinal coin flip** decides it.
+- **26 of 28 knockout games played and locked**; six teams remain. The model called the vast majority correctly (misses were penalty-shootout upsets).
 
 ![Title odds](article_charts/fig1_title_odds.png)
 
@@ -55,7 +48,8 @@ it survives.
 
 - **Host familiarity** — small ±4% boost for the USA/Canada/Mexico co-hosts (a setup the model has never seen).
 - **Chemistry floor** — keeps elite players at lower-prestige clubs (e.g. Messi/De Paul at Inter Miami) from being undervalued.
-- **In-tournament form** — the ±6% live-form layer described above.
+- **In-tournament form** — the ±6% team-level live-form layer (opponent-adjusted GD z-score).
+- **Individual hot-hand** — a ±5% boost toward the team with the hotter in-tournament scorer (goals + ½·assists), so a player on a tear (Mbappé, Messi, Haaland) counts beyond the static squad features.
 
 ---
 

@@ -137,6 +137,26 @@ COMPLETED_KNOCKOUT: list[dict] = [
     {"stage":"QF","home":"Spain",        "away":"Belgium",  "hg":2,"ag":1,"winner":"Spain",    "date":"2026-07-10"},
 ]
 
+# ---------------------------------------------------------------------------
+# Individual "hot-hand" — a team's best in-tournament attacker, scored as
+# goals + 0.5*assists (as of the quarter-finals; FIFA/press Golden Boot tracker).
+# A player on a scoring tear (Mbappé, Messi, Haaland) is live evidence the static
+# squad features can't see. Consumed as a small, capped post-prediction boost.
+# Teams not listed default to 0 (no standout scorer).
+# ---------------------------------------------------------------------------
+TOURNAMENT_TOP_ATTACKER: dict[str, float] = {
+    "France":      9.0,   # Mbappé — 8 goals + 2 assists
+    "Argentina":   8.0,   # Messi — 8 goals
+    "Norway":      7.0,   # Haaland — 7 goals
+    "England":     6.0,   # Kane — 6 goals
+    "Spain":       4.5,   # Oyarzabal ~4 (+a) / Yamal
+    "Switzerland": 2.0,   # Embolo / Ndoye
+    # eliminated sides (kept for reference; they no longer feature in live games)
+    "Brazil":      5.0,   # Vinícius Jr.
+    "Belgium":     3.0,   # Lukaku / Tielemans
+    "Morocco":     3.0,   # Rahimi / Diop
+}
+
 # Actual WC2026 groups as officially drawn
 WC2026_ACTUAL_GROUPS: dict[str, list[str]] = {
     "A": ["Mexico", "South Africa", "South Korea", "Czechia"],

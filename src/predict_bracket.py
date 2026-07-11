@@ -23,6 +23,7 @@ from src.features import HOST_COUNTRY_LEAGUES
 from src.ingest.live_results import (
     COMPLETED_MATCHES, COMPLETED_KNOCKOUT, WC2026_ACTUAL_GROUPS,
     compute_standings, get_group_rank, compute_form_z,
+    TOURNAMENT_TOP_ATTACKER as HOT_HAND,
 )
 
 # ---------------------------------------------------------------------------
@@ -36,6 +37,8 @@ MAX_HOST_FAMILIARITY_BOOST = 0.04  # max 4-percentage-point shift
 MAX_FORM_BOOST = 0.06              # max 6-percentage-point shift from in-tournament form
 FORM_SCALE = 0.02                  # per z-unit of opponent-adjusted form difference
 FORM_Z = compute_form_z(WC2026_SEEDED_ELO)  # live form, computed once
+MAX_HOT_HAND_BOOST = 0.05          # max 5-pt shift from an individual on a scoring tear
+HOT_HAND_SCALE = 0.01              # per (goal + 0.5*assist) of top-attacker difference
 
 
 def _get_host_familiarity(team: str, country: str) -> float:
@@ -169,6 +172,20 @@ def predict(
         transfer = min(fshift, aw); hw += transfer; aw -= transfer
     elif fshift < 0:
         transfer = min(-fshift, hw); aw += transfer; hw -= transfer
+    total = hw + draw + aw
+    if total > 0:
+        hw, draw, aw = hw / total, draw / total, aw / total
+
+    # Individual hot-hand — a player on a scoring tear (Mbappé, Messi, Haaland).
+    # Squad features are static; this rewards who is actually banging in goals
+    # THIS tournament. Difference in top-attacker output (goals + 0.5*assists),
+    # capped so one star can't override the model.
+    hh_diff = HOT_HAND.get(home, 0.0) - HOT_HAND.get(away, 0.0)
+    hshift = float(np.clip(hh_diff * HOT_HAND_SCALE, -MAX_HOT_HAND_BOOST, MAX_HOT_HAND_BOOST))
+    if hshift > 0:
+        transfer = min(hshift, aw); hw += transfer; aw -= transfer
+    elif hshift < 0:
+        transfer = min(-hshift, hw); aw += transfer; hw -= transfer
     total = hw + draw + aw
     if total > 0:
         hw, draw, aw = hw / total, draw / total, aw / total

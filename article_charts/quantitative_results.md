@@ -46,10 +46,11 @@ _Ballon d'Or squad score is now a geometric-decay weighted sum over the whole sq
 
 ## Title odds (retrained + median-imputed model, real knockout draw, 500k sim)
 _All 16 R32, all 8 R16, and the first two QFs locked (France 2–0 Morocco, Spain 2–1 Belgium). Six teams remain. Deterministic bracket now seeds the same pre-tournament ELO the sim uses, so the two agree. Missing squad features imputed with the cross-team median (fixes a UEFA-favouring bias from zero-fill)._
-Spain 40.1 · France 34.3 · Argentina 14.5 · England 6.5 · Norway 3.9 · Switzerland 0.7
-- **Modal (chalk) bracket:** Spain champion over Argentina (71.8% Final); Spain edges France in the SF (56.5%). Both are locked into that semifinal, so it effectively decides the title.
-- **Marginal (Monte Carlo):** Spain is now both the chalk champion and the marginal favourite (40.0%); France 2nd (34.8%). The modal-vs-marginal gap has closed as the field thinned to six.
-- **Coin flip** (unplayed tie, favourite ≤55%): Norway–England (QF).
+France 38.6 · Spain 35.5 · Argentina 16.3 · England 5.9 · Norway 3.5 · Switzerland 0.2
+- **Modal (chalk) bracket:** Spain champion over Argentina (68.3% Final); Spain edges France in the SF (56.5%). Both are locked into that semifinal, so it effectively decides the title.
+- **Marginal (Monte Carlo):** France back on top (38.6%) after adding an individual hot-hand boost (Mbappé leads the Golden Boot 8+2); Spain 35.5% remains the chalk champion. Modal-vs-marginal gap reopened.
+- **Coin flip** (unplayed tie, favourite ≤55%): the France–Spain semifinal (Spain 52.2%).
+- **Individual hot-hand:** ±5% post-prediction boost toward the team with the hotter in-tournament scorer (goals + ½·assists) — France (Mbappé 9.0), Argentina (Messi 8.0), Norway (Haaland 7.0) benefit.
 
 ## Figure manifest
 - fig1 title odds · fig2 progression — **corrected (980 + form, real-bracket 500k sim)**

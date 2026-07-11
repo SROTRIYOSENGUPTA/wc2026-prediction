@@ -121,11 +121,13 @@ class ProbabilityCache:
         self._cache = {}
         # In-tournament form (opponent-adjusted GD/game, z-scored). Computed once.
         try:
-            from src.ingest.live_results import compute_form_z
+            from src.ingest.live_results import compute_form_z, TOURNAMENT_TOP_ATTACKER
             from src.model import WC2026_SEEDED_ELO
             self._form_z = compute_form_z(WC2026_SEEDED_ELO)
+            self._hot_hand = TOURNAMENT_TOP_ATTACKER
         except Exception:
             self._form_z = {}
+            self._hot_hand = {}
 
     def get(self, home: str, away: str) -> tuple[float, float, float]:
         """Returns (p_home_win, p_draw, p_away_win)."""
@@ -139,6 +141,9 @@ class ProbabilityCache:
     # In-tournament form adjustment (post-prediction; capped so 3 games can't dominate)
     _MAX_FORM_BOOST = 0.06
     _FORM_SCALE = 0.02   # per z-unit of form difference
+    # Individual hot-hand adjustment (top attacker's goals + 0.5*assists this tournament)
+    _MAX_HOT_HAND_BOOST = 0.05
+    _HOT_HAND_SCALE = 0.01
 
     def _host_familiarity(self, team: str, country: str = "usa") -> float:
         col = f"host_familiarity_{country}"
@@ -179,6 +184,17 @@ class ProbabilityCache:
             hw, aw = hw + transfer, aw - transfer
         elif fshift < 0:
             transfer = min(-fshift, hw)
+            hw, aw = hw - transfer, aw + transfer
+
+        # Individual hot-hand (a player on a scoring tear the static features miss)
+        hh_diff = self._hot_hand.get(home, 0.0) - self._hot_hand.get(away, 0.0)
+        hshift = max(-self._MAX_HOT_HAND_BOOST,
+                     min(self._MAX_HOT_HAND_BOOST, hh_diff * self._HOT_HAND_SCALE))
+        if hshift > 0:
+            transfer = min(hshift, aw)
+            hw, aw = hw + transfer, aw - transfer
+        elif hshift < 0:
+            transfer = min(-hshift, hw)
             hw, aw = hw - transfer, aw + transfer
 
         total = hw + draw + aw
