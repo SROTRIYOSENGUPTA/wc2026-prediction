@@ -43,11 +43,11 @@ _A real, modest edge: ~11% lower log-loss than the base rate, +11 pts accuracy o
 | **Knockout flag** | **7.1%** |
 
 ## Title odds (retrained + median-imputed model, real knockout draw, 500k sim)
-_All 16 R32 + four R16 results locked (Norway 2–1 Brazil; England beat Mexico 3–2 with 10 men; France through past Paraguay). Deterministic bracket now seeds the same pre-tournament ELO the sim uses, so the two agree. Missing squad features imputed with the cross-team median (fixes a UEFA-favouring bias from zero-fill)._
-France 38.2 · Argentina 19.1 · Spain 13.3 · England 9.2 · Norway 8.4 · Portugal 4.1 …
-- **Modal (chalk) bracket:** Spain champion over Argentina (69.2% Final); Spain edges France in the SF (56.5%); Norway (who upset Brazil, then England) run to the semis before Argentina ends them.
-- **Marginal (Monte Carlo):** France are the clear most-likely single winner (38%) across all simulated worlds, despite Spain winning the single most-likely bracket — a wide modal-vs-marginal gap.
-- **Coin flips** (unplayed ties, favourite ≤55%): Switzerland–Colombia (R16) and Norway–England (QF).
+_All 16 R32, all 8 R16, and the first two QFs locked (France 2–0 Morocco, Spain 2–1 Belgium). Six teams remain. Deterministic bracket now seeds the same pre-tournament ELO the sim uses, so the two agree. Missing squad features imputed with the cross-team median (fixes a UEFA-favouring bias from zero-fill)._
+Spain 40.0 · France 34.8 · Argentina 13.0 · England 8.1 · Norway 3.2 · Switzerland 0.9
+- **Modal (chalk) bracket:** Spain champion over Argentina (73.6% Final); Spain edges France in the SF (56.5%). Both are locked into that semifinal, so it effectively decides the title.
+- **Marginal (Monte Carlo):** Spain is now both the chalk champion and the marginal favourite (40.0%); France 2nd (34.8%). The modal-vs-marginal gap has closed as the field thinned to six.
+- **Coin flip** (unplayed tie, favourite ≤55%): Norway–England (QF).
 
 ## Figure manifest
 - fig1 title odds · fig2 progression — **corrected (980 + form, real-bracket 500k sim)**

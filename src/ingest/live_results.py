@@ -124,9 +124,17 @@ COMPLETED_KNOCKOUT: list[dict] = [
     {"stage":"R32","home":"Argentina",   "away":"Cabo Verde","hg":3,"ag":2,"winner":"Argentina","date":"2026-07-03","note":"after extra time"},
     {"stage":"R32","home":"Colombia",    "away":"Ghana",    "hg":1,"ag":0,"winner":"Colombia", "date":"2026-07-03"},
     # Round of 16 (Jul 4–7) — add each here once FINAL, verified from a reliable score.
+    {"stage":"R16","home":"Paraguay",    "away":"France",   "hg":0,"ag":1,"winner":"France",   "date":"2026-07-04"},
+    {"stage":"R16","home":"Canada",      "away":"Morocco",  "hg":0,"ag":3,"winner":"Morocco",  "date":"2026-07-04"},
+    {"stage":"R16","home":"Portugal",    "away":"Spain",    "hg":0,"ag":1,"winner":"Spain",    "date":"2026-07-06"},
+    {"stage":"R16","home":"USA",         "away":"Belgium",  "hg":1,"ag":4,"winner":"Belgium",  "date":"2026-07-06"},
     {"stage":"R16","home":"Brazil",      "away":"Norway",   "hg":1,"ag":2,"winner":"Norway",   "date":"2026-07-05","note":"Norway upset Brazil"},
-    {"stage":"R16","home":"Mexico",      "away":"England",  "hg":2,"ag":3,"winner":"England",  "date":"2026-07-05","note":"England won 3-2 despite a red card"},
-    {"stage":"R16","home":"Paraguay",    "away":"France",   "hg":0,"ag":2,"winner":"France",   "date":"2026-07-04","note":"France through to the QF (score placeholder — confirm exact)"},
+    {"stage":"R16","home":"Mexico",      "away":"England",  "hg":2,"ag":3,"winner":"England",  "date":"2026-07-05","note":"England won 3-2 with 10 men"},
+    {"stage":"R16","home":"Argentina",   "away":"Egypt",    "hg":3,"ag":2,"winner":"Argentina","date":"2026-07-07"},
+    {"stage":"R16","home":"Switzerland", "away":"Colombia", "hg":0,"ag":0,"winner":"Switzerland","date":"2026-07-07","note":"Switzerland won on penalties"},
+    # Quarter-finals (Jul 9-11)
+    {"stage":"QF","home":"France",       "away":"Morocco",  "hg":2,"ag":0,"winner":"France",   "date":"2026-07-09"},
+    {"stage":"QF","home":"Spain",        "away":"Belgium",  "hg":2,"ag":1,"winner":"Spain",    "date":"2026-07-10"},
 ]
 
 # Actual WC2026 groups as officially drawn
