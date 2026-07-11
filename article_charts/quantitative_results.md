@@ -28,7 +28,9 @@ Training set is now the full **980 internationals**. Snapshot: group stage compl
 
 _A real, modest edge: ~11% lower log-loss than the base rate, +11 pts accuracy over always-picking-the-favourite. Model **retrained with median imputation** for missing squad features (was zero-fill, which systematically underrated ~14 non-UEFA teams). Train and inference now use the same imputed features; OOF performance held (0.943, 55.2%)._
 
-## Feature importance (retrained, median-imputed 980-match model)
+## Feature importance (retrained; median-imputed + depth-aware Ballon d'Or)
+_Ballon d'Or squad score is now a geometric-decay weighted sum over the whole squad's 2025 rankings (rewards depth: France's Dembélé #1 + Mbappé #5), not just the single best player._
+
 | Feature | Importance |
 |---|--:|
 | Ballon d'Or talent | 12.6% |
@@ -44,8 +46,8 @@ _A real, modest edge: ~11% lower log-loss than the base rate, +11 pts accuracy o
 
 ## Title odds (retrained + median-imputed model, real knockout draw, 500k sim)
 _All 16 R32, all 8 R16, and the first two QFs locked (France 2–0 Morocco, Spain 2–1 Belgium). Six teams remain. Deterministic bracket now seeds the same pre-tournament ELO the sim uses, so the two agree. Missing squad features imputed with the cross-team median (fixes a UEFA-favouring bias from zero-fill)._
-Spain 40.0 · France 34.8 · Argentina 13.0 · England 8.1 · Norway 3.2 · Switzerland 0.9
-- **Modal (chalk) bracket:** Spain champion over Argentina (73.6% Final); Spain edges France in the SF (56.5%). Both are locked into that semifinal, so it effectively decides the title.
+Spain 40.1 · France 34.3 · Argentina 14.5 · England 6.5 · Norway 3.9 · Switzerland 0.7
+- **Modal (chalk) bracket:** Spain champion over Argentina (71.8% Final); Spain edges France in the SF (56.5%). Both are locked into that semifinal, so it effectively decides the title.
 - **Marginal (Monte Carlo):** Spain is now both the chalk champion and the marginal favourite (40.0%); France 2nd (34.8%). The modal-vs-marginal gap has closed as the field thinned to six.
 - **Coin flip** (unplayed tie, favourite ≤55%): Norway–England (QF).
 

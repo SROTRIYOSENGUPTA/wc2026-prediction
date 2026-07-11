@@ -1008,8 +1008,17 @@ def build_team_features(player_features: pd.DataFrame) -> pd.DataFrame:
     # 0–1 range keeps the feature well-behaved in the model.
     if "player" in player_features.columns:
         def ballon_dor_squad_score(df):
-            scores = [BALLON_DOR_2025.get(str(p), 0.0) for p in df["player"]]
-            return max(scores) if scores else 0.0
+            # Depth-aware individual-brilliance score: a geometric-decay weighted
+            # sum over the WHOLE squad's Ballon d'Or 2025 rankings — full weight on
+            # the top-ranked player, half on the 2nd, quarter on the 3rd, ... So a
+            # squad stacked with elite talent (e.g. France: Dembélé #1 + Mbappé #5)
+            # scores clearly above one with a single star. Tree model is
+            # scale-invariant, so the (>1) range is fine.
+            scores = sorted(
+                (BALLON_DOR_2025.get(str(p), 0.0) for p in df["player"]),
+                reverse=True,
+            )
+            return sum(s * (0.5 ** i) for i, s in enumerate(scores))
 
         bdo = (
             player_features.groupby("team")
