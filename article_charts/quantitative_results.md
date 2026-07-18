@@ -49,7 +49,7 @@ _Every knockout through the semifinals is locked. Both SFs were model coin flips
 Spain 66.2 · Argentina 33.8 (Final is set)
 - **Modal (chalk) bracket:** Spain champion over Argentina (69.2% head-to-head; 66.2% incl. pens paths); the coin-flip SF over France (52.2%) went Spain's way for real, 2–0.
 - **Marginal (Monte Carlo):** with the field down to the two finalists, modal and marginal coincide: Spain 66.2%.
-- Remaining: Final (Spain 66.2/33.8) and bronze (France 79.8% v England).
+- Remaining: only the Final (Spain 66.2/33.8). England took bronze 5–3 over France — an upset (model: France 79.8%).
 - **Individual hot-hand:** ±5% post-prediction boost toward the team with the hotter in-tournament scorer (goals + ½·assists) — France (Mbappé 9.0), Argentina (Messi 8.0), Norway (Haaland 7.0) benefit.
 
 ## Figure manifest

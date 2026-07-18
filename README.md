@@ -25,9 +25,9 @@ it survives.
 ### Current headline (the Final is set)
 
 - **The real Final is Spain vs Argentina — the exact Final the model projected from the group stage.**
-- **Title odds:** **Spain 66.2%** · Argentina 33.8%. Bronze game: France 79.8% v England.
+- **Title odds:** **Spain 66.2%** · Argentina 33.8%. England snatched bronze 5–3 over France (an upset — model had France 79.8%).
 - Both semifinals were model coin flips and both went chalk: Spain 2–0 France, Argentina 2–1 England.
-- Every completed knockout is locked; only the bronze game and the Final remain.
+- Every completed knockout is locked; only the Final remains (Jul 19, MetLife).
 
 ![Title odds](article_charts/fig1_title_odds.png)
 
