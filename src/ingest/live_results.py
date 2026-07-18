@@ -140,7 +140,7 @@ COMPLETED_KNOCKOUT: list[dict] = [
     # Semi-finals — both coin flips went the model's way; the real Final is the predicted Final
     {"stage":"SF","home":"France",       "away":"Spain",    "hg":0,"ag":2,"winner":"Spain",    "date":"2026-07-14"},
     {"stage":"SF","home":"England",      "away":"Argentina","hg":1,"ag":2,"winner":"Argentina","date":"2026-07-15"},
-    {"stage":"3RD","home":"France",      "away":"England",  "hg":3,"ag":5,"winner":"England",  "date":"2026-07-18","note":"England snatch bronze in an 8-goal thriller"},
+    {"stage":"3RD","home":"France",      "away":"England",  "hg":4,"ag":6,"winner":"England",  "date":"2026-07-18","note":"England snatch bronze in a 10-goal thriller"},
 ]
 
 # ---------------------------------------------------------------------------
