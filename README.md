@@ -22,12 +22,12 @@ a result from each match, advance the winner through the real confirmed bracket,
 final — then repeat 500,000 times. A team's title odds are simply the share of those tournaments
 it survives.
 
-### Current headline (quarter-finals underway)
+### Current headline (the Final is set)
 
-- **Most-likely bracket (chalk):** **Spain** champions, beating Argentina **68.3%** in the final.
-- **Marginal title odds (500k sim):** **France 37.3%** · Spain 35.6% · Argentina 15.5% · England 11.4% · Switzerland 0.2%.
-- France lead the odds (Mbappé's Golden Boot charge) while Spain wins the single most-likely bracket — the France–Spain **semifinal coin flip** decides it.
-- **27 of 28 pre-final knockout games played and locked**; five teams remain and BOTH semifinals are coin flips (Spain 52.2% v France; Argentina 50.9% v England).
+- **The real Final is Spain vs Argentina — the exact Final the model projected from the group stage.**
+- **Title odds:** **Spain 66.2%** · Argentina 33.8%. Bronze game: France 79.8% v England.
+- Both semifinals were model coin flips and both went chalk: Spain 2–0 France, Argentina 2–1 England.
+- Every completed knockout is locked; only the bronze game and the Final remain.
 
 ![Title odds](article_charts/fig1_title_odds.png)
 

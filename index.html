@@ -4,19 +4,19 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Srotriyo Sengupta's WC 2026 Bracket Prediction</title>
-<meta name="description" content="Game-by-game machine learning prediction for FIFA World Cup 2026 by Srotriyo Sengupta. Knockouts underway — Norway stun Brazil 2–1 in the Round of 16 and run to the semis. The model has Spain beating Argentina 68.3% in the Final, with France topping the title odds (37.3%). Includes Golden Boot, Golden Ball, Golden Glove, Best Young Player predictions.">
+<meta name="description" content="Game-by-game machine learning prediction for FIFA World Cup 2026 by Srotriyo Sengupta. Knockouts underway — Norway stun Brazil 2–1 in the Round of 16 and run to the semis. The model has Spain beating Argentina 69.2% in the Final, with Spain 66% to beat Argentina in the real Final — the matchup the model predicted. Includes Golden Boot, Golden Ball, Golden Glove, Best Young Player predictions.">
 <meta name="author" content="Srotriyo Sengupta">
 
 <!-- Open Graph -->
 <meta property="og:type"        content="article">
 <meta property="og:title"       content="Srotriyo Sengupta's WC 2026 Bracket Prediction — Spain are Champions">
-<meta property="og:description" content="Knockouts underway — Norway shock Brazil 2–1 in the R16 and run to the semis. Spain beat Argentina 68.3% in the Final; France top the odds at 37.3%. Awards predictions included.">
+<meta property="og:description" content="Knockouts underway — Norway shock Brazil 2–1 in the R16 and run to the semis. Spain beat Argentina 69.2% in the Final; Spain 66% v Argentina in the Final. Awards predictions included.">
 <meta property="og:site_name"   content="Srotriyo Sengupta · Data Analysis">
 
 <!-- Twitter Card -->
 <meta name="twitter:card"        content="summary_large_image">
 <meta name="twitter:title"       content="Srotriyo Sengupta's WC 2026 Bracket Prediction — Spain are Champions">
-<meta name="twitter:description" content="Knockouts underway — Norway stun Brazil 2–1 in the R16 and reach the semis. Spain beat Argentina 68.3% in the Final; France top the odds (37.3%). Golden Boot: Messi (7 goals). Full bracket by Srotriyo Sengupta.">
+<meta name="twitter:description" content="Knockouts underway — Norway stun Brazil 2–1 in the R16 and reach the semis. Spain beat Argentina 69.2% in the Final; Spain 66% v Argentina in the Final. Golden Boot: Messi (7 goals). Full bracket by Srotriyo Sengupta.">
 
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -576,8 +576,8 @@ html{
 <div class="stories">
   <div class="story gold">
     <span class="story-icon">🏆</span>
-    <div class="story-title">Spain Win the Chalk Bracket — 68.3% Over Argentina</div>
-    <div class="story-body">Spain are the model's <strong>chalk champion</strong>: they beat Portugal (1–0) and Belgium (2–1), edge <strong>France 52.2%</strong> in a coin-flip semifinal, then take the Final <strong>68.3% over Argentina</strong>. Tournament-best ELO and a watertight defence carry that bracket — but France's red-hot attack now just edges them in the <em>overall</em> odds (see below).</div>
+    <div class="story-title">The Predicted Final Is Real: Spain vs Argentina</div>
+    <div class="story-body">The bracket the model has been predicting is now <strong>reality</strong>: Spain beat France <strong>2–0</strong> in the semifinal it had flagged as a 52–48 coin flip, and face <strong>Argentina in the Final</strong> — the exact matchup projected since the group stage. The sim gives <strong>Spain 66% / Argentina 34%</strong>: tournament-best ELO and a watertight defence against Messi's hot hand.</div>
   </div>
   <div class="story gold">
     <span class="story-icon">💥</span>
@@ -596,13 +596,13 @@ html{
   </div>
   <div class="story teal">
     <span class="story-icon">🇫🇷</span>
-    <div class="story-title">France Top the Odds Again — Mbappé's Golden Boot Charge</div>
-    <div class="story-body">With <strong>Mbappé leading the Golden Boot (8 goals, 2 assists)</strong>, the model's new individual hot-hand signal lifts France back to the <strong>top of the title odds at 37.3%</strong>. They cruised through Sweden (3–0), Paraguay (1–0) and Morocco (2–0), and the France–Spain semifinal is now a genuine <strong>52–48 coin flip</strong> — the game of the tournament.</div>
+    <div class="story-title">France Fall in the Semis — Bronze Game vs England</div>
+    <div class="story-body">France entered the semis as the marginal favourite (37.3%) on Mbappé's Golden Boot charge — and lost the coin flip: <strong>Spain won 2–0</strong>. It's the modal-vs-marginal lesson in one game: the most-likely single path (Spain's) beat the most-likely champion (France). They face England for <strong>bronze (France 79.8%)</strong>.</div>
   </div>
   <div class="story">
     <span class="story-icon">📊</span>
     <div class="story-title">Modal vs Marginal — Spain Wins the Bracket, France the Odds</div>
-    <div class="story-body">The chalk bracket advances the favourite in every tie and crowns <strong>Spain</strong>. But the <strong>500k Monte Carlo</strong> — now weighting who's actually scoring — makes <strong>France the marginal favourite: France 37.3% · Spain 35.6% · Argentina 15.5% · England 11.4% · Switzerland 0.2%</strong>. Both are locked into the same semifinal; Mbappé's form tips the <em>overall</em> odds to France even as Spain edges the single most-likely bracket.</div>
+    <div class="story-body">Both semifinals were model coin flips and both broke chalk: <strong>Spain 2–0 France</strong>, <strong>Argentina 2–1 England</strong>. Only the Final and the bronze game remain. The 500k sim now reduces to one number: <strong>Spain 66.2% · Argentina 33.8%</strong> — Spain's rating and defence versus Messi, one game for the title, exactly the Final this model called from the start.</div>
   </div>
 </div>
 
@@ -757,17 +757,17 @@ const ROUNDS = [
     {h:"France",      hf:"🇫🇷",a:"Morocco",       af:"🇲🇦",ha:100.0,aa:0.0,w:"France",      played:true, dt:"Jul 9", venue:"Gillette Stadium · Foxborough",  note:"✔ FT 2–0 · France into the semis"},
     {h:"Spain",       hf:"🇪🇸",a:"Belgium",       af:"🇧🇪",ha:100.0,aa:0.0,w:"Spain",       played:true, dt:"Jul 10",venue:"SoFi Stadium · Inglewood",       note:"✔ FT 2–1 · Spain into the semis"},
     {h:"Norway",      hf:"🇳🇴",a:"England",       af:"🏴󠁧󠁢󠁥󠁮󠁧󠁿",ha:0.0,aa:100.0,w:"England",    played:true, upset:true, dt:"Jul 11",venue:"Hard Rock Stadium · Miami",  note:"⚡ FT 1–2 · England end Norway's run"},
-    {h:"Argentina",   hf:"🇦🇷",a:"Switzerland",   af:"🇨🇭",ha:95.5,aa:4.5,w:"Argentina",                dt:"Jul 11",venue:"Arrowhead Stadium · Kansas City"},
+    {h:"Argentina",   hf:"🇦🇷",a:"Switzerland",   af:"🇨🇭",ha:100.0,aa:0.0,w:"Argentina",   played:true, dt:"Jul 11",venue:"Arrowhead Stadium · Kansas City", note:"✔ FT 3–1 · Argentina into the semis"},
   ]},
   { name:"Semi-Finals", date:"Jul 14 – 15", matches:[
-    {h:"France",      hf:"🇫🇷",a:"Spain",         af:"🇪🇸",ha:47.8,aa:52.2,w:"Spain",       close:true,   dt:"Jul 14",venue:"AT&T Stadium · Arlington",       note:"Spain ends France's run"},
-    {h:"England",     hf:"🏴󠁧󠁢󠁥󠁮󠁧󠁿",a:"Argentina",     af:"🇦🇷",ha:49.1,aa:50.9,w:"Argentina",                dt:"Jul 15",venue:"Mercedes-Benz Stadium · Atlanta"},
+    {h:"France",      hf:"🇫🇷",a:"Spain",         af:"🇪🇸",ha:0.0,aa:100.0,w:"Spain",       played:true,  dt:"Jul 14",venue:"AT&T Stadium · Arlington",       note:"✔ FT 0–2 · Spain into the Final"},
+    {h:"England",     hf:"🏴󠁧󠁢󠁥󠁮󠁧󠁿",a:"Argentina",     af:"🇦🇷",ha:0.0,aa:100.0,w:"Argentina",   played:true,  dt:"Jul 15",venue:"Mercedes-Benz Stadium · Atlanta", note:"✔ FT 1–2 · Argentina into the Final"},
   ]},
   { name:"3rd Place", date:"Jul 18", isBronze:true, matches:[
     {h:"France",      hf:"🇫🇷",a:"England",       af:"🏴󠁧󠁢󠁥󠁮󠁧󠁿",ha:79.8,aa:20.2,w:"France",isBronze:true,   dt:"Jul 18",venue:"Hard Rock Stadium · Miami",     note:"Bronze Final"},
   ]},
   { name:"Final", date:"Jul 19", matches:[
-    {h:"Spain",       hf:"🇪🇸",a:"Argentina",     af:"🇦🇷",ha:68.3,aa:31.7,w:"Spain",isFinal:true,    dt:"Jul 19",venue:"MetLife Stadium · East Rutherford, NJ"},
+    {h:"Spain",       hf:"🇪🇸",a:"Argentina",     af:"🇦🇷",ha:69.2,aa:30.8,w:"Spain",isFinal:true,    dt:"Jul 19",venue:"MetLife Stadium · East Rutherford, NJ"},
   ]},
 ];
 
@@ -913,7 +913,7 @@ cw.innerHTML = `
     <span class="champ-label">Predicted Champion</span>
     <span class="champ-flag">🇪🇸</span>
     <div class="champ-name">Spain</div>
-    <span class="champ-prob">68.3% · Final vs Argentina</span>
+    <span class="champ-prob">69.2% · Final vs Argentina</span>
     <div class="champ-runner">
       <span class="champ-runner-label">Runner-up</span>
       <div>🇦🇷 <span class="champ-runner-name">Argentina</span></div>
